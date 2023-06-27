@@ -11,7 +11,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nyx"; # Define your hostname.
+  networking.hostName = "nyx";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Amsterdam";
@@ -38,10 +38,8 @@
   services.xserver.desktopManager.gnome.enable = true;
   services.xserver.layout = "us";
 
-  # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -52,10 +50,6 @@
     pulse.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.rick = {
     isNormalUser = true;
     description = "rick";
@@ -90,8 +84,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = (with pkgs; [
+    vim_configurable
     efibootmgr
-    vim
     git
     tmux
     tree
@@ -213,27 +207,26 @@
     ''
   );
 
-  environment.etc."vimrc".text = pkgs.lib.mkForce(
-    ''
-      ### CUST ###
-      syntax enable
-      filetype indent on
-      set mouse=a
-      set encoding=utf-8
-      set belloff=all
-      set tabstop=4
-      set softtabstop=4
-      set shiftwidth=4
-      set expandtab
-      set smarttab
-      set number
-      set wildmenu
-      set foldenable
-      set clipboard=unnamedplus
-      set nowrap
-      ### CUST ###
-    ''
-  );
+  environment.etc."vimrc".text = pkgs.lib.mkForce
+  ''
+    syntax enable
+    filetype indent on
+    set mouse=a
+    set encoding=utf-8
+    set belloff=all
+    set tabstop=4
+    set softtabstop=4
+    set shiftwidth=4
+    set expandtab
+    set smarttab
+    set number
+    set wildmenu
+    set foldenable
+    set clipboard=unnamedplus
+    set nowrap
+    set modeline
+    set modelines=1
+  '';
 
   environment.etc."gitconfig".text = pkgs.lib.mkForce(
     ''
@@ -255,33 +248,51 @@
       ServerAliveInterval 60
   '';
 
+  programs.tmux.enable = true;
+  programs.tmux.extraConfig = ''
+    bind -r C-a send-prefix
+    bind r source-file /etc/tmux.conf
+    bind -  split-window -v  -c '#{pane_current_path}'
+    bind \\ split-window -h  -c '#{pane_current_path}'
+    bind -r C-k resize-pane -U
+    bind -r C-j resize-pane -D
+    bind -r C-h resize-pane -L
+    bind -r C-l resize-pane -R
+    bind -r k select-pane -U
+    bind -r j select-pane -D
+    bind -r h select-pane -L
+    bind -r l select-pane -R
+    bind -T copy-mode MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel
+
+    set -sg escape-time 0
+    set -g prefix C-a
+    set -g history-limit 50000
+    set -g set-titles on
+    set -g mouse on
+    set -g monitor-activity on
+    set -g default-terminal "screen-256color"
+    set -g default-command "''${SHELL}"
+    set -g status-interval 60
+    set -g status-bg black
+    set -g status-fg green
+    set -g window-status-activity-style fg=red
+    set -g status-left-length 100
+    set -g status-left  '#{?client_prefix,#[fg=red]PFX,   } #[fg=green](#S) '
+    set -g status-right-length 100
+    set -g status-right '#[fg=yellow]%Y/%m(%b)/%d %a %H:%M#[default]'
+  '';
+
   environment.variables.EDITOR = "vim";
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  programs.mtr.enable = true;
 
-  # List services that you want to enable:
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
-
+  system.stateVersion = "23.05";
 }
+
+# vim:expandtab ts=2 sw=2
+
