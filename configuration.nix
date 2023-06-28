@@ -8,6 +8,7 @@
       ./hardware-configuration.nix
     ];
 
+  boot.kernelParams = [ "amd_pstate=passive" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -50,10 +51,16 @@
     pulse.enable = true;
   };
 
+  nixpkgs.config.allowUnfree = true;
+
   users.users.rick = {
     isNormalUser = true;
     description = "rick";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "libvirtd" 
+    ];
     packages = (with pkgs; [
       firefox
       google-chrome
@@ -78,11 +85,6 @@
     ]);
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = (with pkgs; [
     vim_configurable
     efibootmgr
@@ -109,7 +111,6 @@
     vagrant
   ]) 
   ++ (with pkgs; [
-    auto-cpufreq
     nvme-cli
     pwgen
     qrencode
@@ -146,23 +147,21 @@
   };
   virtualisation.libvirtd.enable = true;
 
-  environment.etc."auto-cpufreq.conf".text = pkgs.lib.mkForce(
-    ''
-      [charger]
-      governor = ondemand
-      scaling_min_freq = 400000
-      #scaling_max_freq = 4760000
-      turbo = auto
-      [battery]
-      governor = ondemand
-      scaling_min_freq = 400000
-      scaling_max_freq = 1400000
-      turbo = never
-    ''
-  );
-  systemd.packages = [ pkgs.auto-cpufreq ];
-  systemd.services.auto-cpufreq.path = with pkgs; [ bash coreutils ];
-  systemd.services.power-profiles-daemon.enable = false;
+  services.auto-cpufreq.enable = true;
+  services.auto-cpufreq.settings = {
+    "charger" = {
+      governor = "ondemand";
+      scaling_min_freq = 400000;
+      #scaling_max_freq = 4760000;
+      turbo = "auto";
+    };
+    "battery" = {
+      governor = "ondemand";
+      scaling_min_freq = 400000;
+      scaling_max_freq = 1400000;
+      turbo = "never";
+    };
+  };
 
   environment.etc."inputrc".text = pkgs.lib.mkForce(
     builtins.readFile <nixpkgs/nixos/modules/programs/bash/inputrc>
