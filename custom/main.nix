@@ -16,8 +16,8 @@ let PKGS = pkgs.callPackage (import ./src/pkgs.nix) {}; in
   networking.networkmanager.dns = "systemd-resolved";
   networking.networkmanager.extraConfig = CONFS.NETWORK_MANAGER_CONFIG;
   networking.firewall.enable = true;
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [  ];
+  networking.firewall.allowedUDPPorts = [  ];
 
   systemd.extraConfig = CONFS.SYSTEMD_CONFIG;
   systemd.user.extraConfig = CONFS.SYSTEMD_USER_CONFIG;
@@ -63,6 +63,7 @@ let PKGS = pkgs.callPackage (import ./src/pkgs.nix) {}; in
 
   sound.enable = true;
   hardware.pulseaudio.enable = false;
+  hardware.bluetooth.powerOnBoot = lib.mkForce(false);
   security.rtkit.enable = true;
 
   virtualisation.podman.enable = true;
@@ -86,6 +87,7 @@ let PKGS = pkgs.callPackage (import ./src/pkgs.nix) {}; in
   programs.tmux.enable = true;
   programs.tmux.extraConfig = CONFS.TMUX_CONFIG;
   programs.mtr.enable = true;
+  programs.dconf.enable = true;
   programs.steam.enable = true;
 
   users.users.rick = {
