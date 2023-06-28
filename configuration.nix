@@ -23,6 +23,7 @@
     systemd-resolved=false
   '';
 
+  services.avahi.enable = false;
   services.resolved.enable = true;
   services.resolved.extraConfig = ''
     [Resolve]
@@ -113,8 +114,6 @@
   services.xserver.desktopManager.gnome.enable = true;
   services.xserver.layout = "us";
 
-  services.printing.enable = true;
-
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -139,13 +138,14 @@
       firefox
       google-chrome
       spotify
-      steam
       discord
       flameshot
       otpclient
       winbox
       gns3-gui
       gns3-server
+      pavucontrol
+      networkmanagerapplet
     ]) 
     ++ (with pkgs; [
       gnome.gnome-terminal
@@ -342,6 +342,7 @@
   environment.variables.EDITOR = "vim";
 
   programs.mtr.enable = true;
+  programs.steam.enable = true;
 
 
   # networking.firewall.allowedTCPPorts = [ ... ];
