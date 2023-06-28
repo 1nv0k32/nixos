@@ -16,6 +16,7 @@ let PKGS = pkgs.callPackage (import ./src/pkgs.nix) {}; in
   networking.networkmanager.dns = "systemd-resolved";
   networking.networkmanager.extraConfig = CONFS.NETWORK_MANAGER_CONFIG;
   networking.firewall.enable = true;
+  networking.firewall.allowPing = false;
   networking.firewall.allowedTCPPorts = [  ];
   networking.firewall.allowedUDPPorts = [  ];
 
