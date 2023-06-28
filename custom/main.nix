@@ -3,15 +3,14 @@ let CONFS = pkgs.callPackage (import ./src/confs.nix) {}; in
 let PKGS = pkgs.callPackage (import ./src/pkgs.nix) {}; in
 {
   system.stateVersion = "23.05";
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.allowReboot = false;
 
   boot.kernelParams = [ "amd_pstate=passive" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = 0;
   
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = false;
-
   networking.hostName = "nyx";
   networking.networkmanager.enable = true;
   networking.networkmanager.dns = "systemd-resolved";
@@ -22,7 +21,6 @@ let PKGS = pkgs.callPackage (import ./src/pkgs.nix) {}; in
 
   systemd.extraConfig = CONFS.SYSTEMD_CONFIG;
   systemd.user.extraConfig = CONFS.SYSTEMD_USER_CONFIG;
-
 
   time.timeZone = "Europe/Amsterdam";
 
