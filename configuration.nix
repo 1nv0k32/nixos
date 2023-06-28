@@ -165,6 +165,7 @@
     git
     tmux
     tree
+    file
     htop
     bat
     ncdu
