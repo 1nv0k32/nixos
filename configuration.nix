@@ -31,6 +31,20 @@
     LC_TIME = "en_GB.UTF-8";
   };
 
+  services.auto-cpufreq.enable = true;
+  services.auto-cpufreq.settings = {
+    "charger" = {
+      governor = "performance";
+      turbo = "always";
+    };
+    "battery" = {
+      governor = "ondemand";
+      scaling_min_freq = 400000;
+      scaling_max_freq = 1400000;
+      turbo = "never";
+    };
+  };
+
   #services.fprintd.enable = true;
   services.fwupd.enable = true;
 
@@ -146,22 +160,6 @@
     defaultNetwork.settings.dns_enabled = true;
   };
   virtualisation.libvirtd.enable = true;
-
-  services.auto-cpufreq.enable = true;
-  services.auto-cpufreq.settings = {
-    "charger" = {
-      governor = "ondemand";
-      scaling_min_freq = 400000;
-      #scaling_max_freq = 4760000;
-      turbo = "auto";
-    };
-    "battery" = {
-      governor = "ondemand";
-      scaling_min_freq = 400000;
-      scaling_max_freq = 1400000;
-      turbo = "never";
-    };
-  };
 
   environment.etc."inputrc".text = pkgs.lib.mkForce(
     builtins.readFile <nixpkgs/nixos/modules/programs/bash/inputrc>
