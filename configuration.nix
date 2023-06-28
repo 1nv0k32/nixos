@@ -11,9 +11,63 @@
   boot.kernelParams = [ "amd_pstate=passive" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.timeout = 0;
 
   networking.hostName = "nyx";
   networking.networkmanager.enable = true;
+  networking.networkmanager.dns = "systemd-resolved";
+  networking.networkmanager.extraConfig  = ''
+    [main]
+    dns=none
+    no-auto-default=*
+    systemd-resolved=false
+  '';
+
+  services.resolved.enable = true;
+  services.resolved.extraConfig = ''
+    [Resolve]
+    DNS=8.8.8.8
+    #Domains=
+    DNSSEC=no
+    #DNSOverTLS=no
+    MulticastDNS=no
+    LLMNR=no
+    Cache=no
+    CacheFromLocalhost=no
+    DNSStubListener=no
+    #DNSStubListenerExtra=
+    #ReadEtcHosts=yes
+    #ResolveUnicastSingleLabel=no
+  '';
+
+  systemd.extraConfig = ''
+    [Manager]
+    LogLevel=err
+    RuntimeWatchdogSec=off
+    RebootWatchdogSec=off
+    KExecWatchdogSec=off
+    DefaultTimeoutStartSec=10s
+    DefaultTimeoutStopSec=10s
+  '';
+
+  systemd.user.extraConfig = ''
+    [Manager]
+    DefaultTimeoutStartSec=10s
+    DefaultTimeoutStopSec=10s
+  '';
+
+  services.logind.extraConfig = ''
+    [Login]
+    KillUserProcesses=no
+    HandlePowerKey=ignore
+    HandleSuspendKey=ignore
+    HandleHibernateKey=ignore
+    HandleLidSwitch=ignore
+    HandleLidSwitchExternalPower=ignore
+    HandleLidSwitchDocked=ignore
+    HandleRebootKey=ignore
+    HandleRebootKeyLongPress=ignore
+  '';
 
   time.timeZone = "Europe/Amsterdam";
 
@@ -31,6 +85,12 @@
     LC_TIME = "en_GB.UTF-8";
   };
 
+  console.earlySetup = true;
+  console.packages = with pkgs; [ terminus_font ];
+  console.font = "${pkgs.terminus_font}/share/consolefonts/ter-v24b.psf.gz";
+  console.keyMap = "us";
+
+  services.power-profiles-daemon.enable = false;
   services.auto-cpufreq.enable = true;
   services.auto-cpufreq.settings = {
     "charger" = {
