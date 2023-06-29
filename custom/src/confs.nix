@@ -1,4 +1,4 @@
-{ lib }:
+{ pkgs, lib }:
 { 
   NETWORK_MANAGER_CONFIG  = ''
     [main]
@@ -75,6 +75,7 @@
     '');
 
   BASHRC_CONFIG = lib.mkForce(''
+      source ${pkgs.git}/share/bash-completion/completions/git-prompt.sh
       WH="\[\e[0;00m\]"
       RE="\[\e[0;31m\]"
       GR="\[\e[0;32m\]"
@@ -82,6 +83,7 @@
       CY="\[\e[0;36m\]"
 
       PS_STAT="[ \$? = "0" ] && printf '$GR*$WH' || printf '$RE*$WH'"
+      PS_GIT="[ -z \$(__git_ps1 %s) ] && printf ' ' || __git_ps1 '$CY{%s}$WH'"
       if [ "`id -u`" -eq 0 ]; then
           DoC=$RE
           PS_SH="$RE# $WH"
@@ -89,7 +91,7 @@
           DoC=$GR
           PS_SH="$GR$ $WH"
       fi
-      PS1="$DoC[$WH\t$DoC]-[$WH\u@\H$DoC]\`$PS_STAT\`$DoC[$PR\w$DoC]$WH \n$PS_SH"
+      PS1="$DoC[$WH\t$DoC]-[$WH\u@\H$DoC]\`$PS_STAT\`$DoC[$PR\w$DoC]$WH \`$PS_GIT\` \n$PS_SH"
 
       alias rm='rm -I'
       alias ls='ls --color=auto'
