@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, lib, ... }:
 let CONFS = pkgs.callPackage (import ./src/confs.nix) {}; in
 let PKGS = pkgs.callPackage (import ./src/pkgs.nix) {}; in
 {
@@ -6,6 +6,7 @@ let PKGS = pkgs.callPackage (import ./src/pkgs.nix) {}; in
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = false;
 
+  boot.extraModprobeConfig = "options kvm_intel nested=1";
   boot.kernelParams = [ "amd_pstate=passive" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
