@@ -69,6 +69,10 @@
     pwndbg
     aircrack-ng
     binwalk
+
+    python311
+    poetry
+    hatch
   ];
 
   GNOME_EXCLUDE = with pkgs; [
