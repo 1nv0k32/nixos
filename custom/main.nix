@@ -94,9 +94,8 @@ let PKGS = pkgs.callPackage (import ./src/pkgs.nix) {}; in
   fonts.fonts = PKGS.FONT;
   fonts.enableDefaultFonts = true;
   fonts.fontconfig.defaultFonts = {
-    serif = [ "Vazirmatn" "Ubuntu" ];
-    sansSerif = [ "Vazirmatn" "Ubuntu" ];
-    monospace = [ "Ubuntu" ];
+    serif = [ "Vazirmatn" "DejaVu Serif" ];
+    sansSerif = [ "Vazirmatn" "DejaVu Sans" ];
   };
 
   users.users.rick = {
