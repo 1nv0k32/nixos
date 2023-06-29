@@ -44,15 +44,13 @@ let PKGS = pkgs.callPackage (import ./src/pkgs.nix) {}; in
   console.font = "${pkgs.terminus_font}/share/consolefonts/ter-v24b.psf.gz";
   console.keyMap = "us";
 
-  services.avahi.enable = false;
+  services.fwupd.enable = true;
   services.resolved.enable = true;
   services.resolved.extraConfig = CONFS.RESOLVED_CONFIG;
   services.logind.extraConfig = CONFS.LOGIND_CONFIG;
-  services.power-profiles-daemon.enable = false;
+  services.power-profiles-daemon.enable = lib.mkForce(false);
   services.auto-cpufreq.enable = true;
   services.auto-cpufreq.settings = CONFS.CPU_FREQ_CONFIG;
-  #services.fprintd.enable = true;
-  services.fwupd.enable = true;
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
@@ -61,6 +59,8 @@ let PKGS = pkgs.callPackage (import ./src/pkgs.nix) {}; in
   services.pipewire.alsa.enable = true;
   services.pipewire.alsa.support32Bit = true;
   services.pipewire.pulse.enable = true;
+  services.avahi.enable = lib.mkForce(false);
+  #services.fprintd.enable = true;
 
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -90,6 +90,14 @@ let PKGS = pkgs.callPackage (import ./src/pkgs.nix) {}; in
   programs.mtr.enable = true;
   programs.dconf.enable = true;
   programs.steam.enable = true;
+
+  fonts.fonts = PKGS.FONT;
+  fonts.enableDefaultFonts = true;
+  fonts.fontconfig.defaultFonts = {
+    serif = [ "Vazirmatn" "Ubuntu" ];
+    sansSerif = [ "Vazirmatn" "Ubuntu" ];
+    monospace = [ "Ubuntu" ];
+  };
 
   users.users.rick = {
     isNormalUser = true;

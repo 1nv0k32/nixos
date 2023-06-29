@@ -1,6 +1,13 @@
 { pkgs }:
 {
-  CONSOLE = with pkgs; [ terminus_font ];
+  CONSOLE = with pkgs; [
+    terminus_font
+  ];
+
+  FONT = with pkgs; [
+    ubuntu_font_family
+    vazir-fonts
+  ];
 
   USER = with pkgs; [
     firefox
