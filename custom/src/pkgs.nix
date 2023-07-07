@@ -28,6 +28,8 @@
     gnomeExtensions.just-perfection
     gnomeExtensions.appindicator
     gnomeExtensions.unblank
+    gnomeExtensions.vitals
+    gnomeExtensions.blur-my-shell
   ];
 
   SYSTEM = with pkgs; [
@@ -57,6 +59,8 @@
     vagrant
 
     nvme-cli
+    gparted
+    stress
     pwgen
     qrencode
 
@@ -70,7 +74,7 @@
     aircrack-ng
     binwalk
 
-    python311
+    python3
     poetry
     hatch
   ];

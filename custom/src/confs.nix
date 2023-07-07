@@ -39,14 +39,14 @@
   LOGIND_CONFIG = ''
     [Login]
     KillUserProcesses=no
-    HandlePowerKey=ignore
-    HandleSuspendKey=ignore
-    HandleHibernateKey=ignore
-    HandleLidSwitch=ignore
-    HandleLidSwitchExternalPower=ignore
-    HandleLidSwitchDocked=ignore
-    HandleRebootKey=ignore
-    HandleRebootKeyLongPress=ignore
+    HandlePowerKey=lock
+    HandleSuspendKey=lock
+    HandleHibernateKey=lock
+    HandleLidSwitch=lock
+    HandleLidSwitchExternalPower=lock
+    HandleLidSwitchDocked=lock
+    HandleRebootKey=lock
+    HandleRebootKeyLongPress=lock
   '';
 
   CPU_FREQ_CONFIG = {

@@ -67,6 +67,7 @@ let PKGS = pkgs.callPackage (import ./src/pkgs.nix) {}; in
   hardware.pulseaudio.enable = false;
   hardware.bluetooth.powerOnBoot = lib.mkForce(false);
   security.rtkit.enable = true;
+  security.pam.services.gdm.enableGnomeKeyring = true;
 
   virtualisation.podman.enable = true;
   virtualisation.podman.dockerCompat = true;
