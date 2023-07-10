@@ -11,7 +11,7 @@
 
   USER = with pkgs; [
     firefox
-    google-chrome
+    chromium
     spotify
     discord
     flameshot
@@ -28,8 +28,6 @@
     gnomeExtensions.just-perfection
     gnomeExtensions.appindicator
     gnomeExtensions.unblank
-    gnomeExtensions.vitals
-    gnomeExtensions.blur-my-shell
   ];
 
   SYSTEM = with pkgs; [
@@ -44,6 +42,8 @@
     ncdu
     aria
     wget
+    unzip
+    gnumake
 
     wireguard-tools
     openvpn
@@ -74,9 +74,9 @@
     aircrack-ng
     binwalk
 
-    python3
-    poetry
+    python311
     hatch
+    poetry
   ];
 
   GNOME_EXCLUDE = with pkgs; [

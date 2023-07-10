@@ -56,8 +56,6 @@
     };
     "battery" = {
       governor = "ondemand";
-      scaling_min_freq = 400000;
-      scaling_max_freq = 1400000;
       turbo = "never";
     };
   };
