@@ -33,6 +33,7 @@
   SYSTEM = with pkgs; [
     vim_configurable
     efibootmgr
+    cryptsetup
     git
     tmux
     tree
