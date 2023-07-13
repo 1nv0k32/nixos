@@ -11,6 +11,8 @@ let PKGS = pkgs.callPackage (import ./src/pkgs.nix) {}; in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = 0;
+  boot.initrd.systemd.enable = true;
+  boot.initrd.systemd.extraConfig = CONFS.SYSTEMD_CONFIG;
   
   networking.hostName = "nyx";
   networking.networkmanager.enable = true;

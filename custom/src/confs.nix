@@ -28,6 +28,7 @@
     KExecWatchdogSec=off
     DefaultTimeoutStartSec=10s
     DefaultTimeoutStopSec=10s
+    DefaultDeviceTimeoutSec=10s
   '';
 
   SYSTEMD_USER_CONFIG = ''
@@ -51,8 +52,9 @@
 
   CPU_FREQ_CONFIG = {
     "charger" = {
-      governor = "performance";
-      turbo = "always";
+      #governor = "performance";
+      governor = "ondemand";
+      turbo = "auto";
     };
     "battery" = {
       governor = "ondemand";
