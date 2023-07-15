@@ -85,11 +85,11 @@
       PS_STAT="[ \$? = "0" ] && printf '$GR*$WH' || printf '$RE*$WH'"
       PS_GIT="[ -z \$(__git_ps1 %s) ] && printf ' ' || __git_ps1 '$CY{%s}$WH'"
       if [ "`id -u`" -eq 0 ]; then
-          DoC=$RE
-          PS_SH="$RE# $WH"
+        DoC=$RE
+        PS_SH="$RE# $WH"
       else
-          DoC=$GR
-          PS_SH="$GR$ $WH"
+        DoC=$GR
+        PS_SH="$GR$ $WH"
       fi
       PS1="$DoC[$WH\t$DoC]-[$WH\u@\H$DoC]\`$PS_STAT\`$DoC[$PR\w$DoC]$WH \`$PS_GIT\` \n$PS_SH"
 
@@ -106,9 +106,9 @@
     set mouse=a
     set encoding=utf-8
     set belloff=all
-    set tabstop=4
-    set softtabstop=4
-    set shiftwidth=4
+    set tabstop=2
+    set softtabstop=2
+    set shiftwidth=2
     set expandtab
     set smarttab
     set number
@@ -122,14 +122,17 @@
 
   GIT_CONFIG = lib.mkForce(''
       [init]
-          defaultBranch = main
+        defaultBranch = main
       [color]
-          ui = auto
+        ui = auto
       [push]
-          autoSetupRemote = true
-          default = current
+        autoSetupRemote = true
+        default = current
       [pull]
-          rebase = true
+        rebase = true
+      [fetch]
+        prune = true
+        pruneTags = true
     '');
 
   SSH_CLIENT_CONFIG = ''

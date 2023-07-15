@@ -1,2 +1,2 @@
-# 1nv0k32 NIXOS configs
+# 1nv0k32 NixOS configs
 
