@@ -67,7 +67,7 @@ let PKGS = pkgs.callPackage (import ./src/pkgs.nix) {}; in
 
   sound.enable = true;
   hardware.pulseaudio.enable = false;
-  hardware.bluetooth.powerOnBoot = lib.mkForce(false);
+  hardware.bluetooth.powerOnBoot = lib.mkForce(true);
   security.rtkit.enable = true;
   security.pam.services.gdm.enableGnomeKeyring = true;
 
