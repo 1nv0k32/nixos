@@ -68,6 +68,8 @@
     stress
     pwgen
     qrencode
+    usbutils
+    pciutils
 
     wireshark
     nmap

@@ -62,7 +62,6 @@ let PKGS = pkgs.callPackage (import ./src/pkgs.nix) {}; in
   services.pipewire.alsa.enable = true;
   services.pipewire.alsa.support32Bit = true;
   services.pipewire.pulse.enable = true;
-  services.avahi.enable = lib.mkForce(false);
   services.fprintd.enable = true;
 
   sound.enable = true;
