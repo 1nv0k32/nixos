@@ -21,6 +21,10 @@
     gns3-server
     pavucontrol
     networkmanagerapplet
+    imagemagick
+    ffmpeg
+    vlc
+    gimp
 
     gnome.gnome-terminal
     gnome.gedit
@@ -65,7 +69,6 @@
     pwgen
     qrencode
 
-    vlc
     wireshark
     nmap
     burpsuite

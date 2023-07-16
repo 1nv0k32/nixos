@@ -63,13 +63,15 @@ let PKGS = pkgs.callPackage (import ./src/pkgs.nix) {}; in
   services.pipewire.alsa.support32Bit = true;
   services.pipewire.pulse.enable = true;
   services.avahi.enable = lib.mkForce(false);
-  #services.fprintd.enable = true;
+  services.fprintd.enable = true;
 
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   hardware.bluetooth.powerOnBoot = lib.mkForce(true);
   security.rtkit.enable = true;
   security.pam.services.gdm.enableGnomeKeyring = true;
+  security.pam.services.login.fprintAuth = true;
+  security.pam.services.gdm-fingerprint.fprintAuth = true;
 
   virtualisation.podman.enable = true;
   virtualisation.podman.dockerCompat = true;
