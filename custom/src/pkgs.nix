@@ -25,6 +25,7 @@
     ffmpeg
     vlc
     gimp
+    evince
 
     gnome.gnome-terminal
     gnome.gedit
