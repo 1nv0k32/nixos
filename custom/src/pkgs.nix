@@ -26,6 +26,8 @@
     vlc
     gimp
     evince
+    signal-desktop
+    telegram-desktop
 
     gnome.gnome-terminal
     gnome.gedit
@@ -50,6 +52,7 @@
     wget
     unzip
     gnumake
+    tpm2-tss
 
     wireguard-tools
     openvpn
