@@ -75,6 +75,11 @@
     '');
 
   BASHRC_CONFIG = lib.mkForce(''
+      shopt -s histappend
+      shopt -s globstar
+      export HISTCONTROL=ignoreboth
+      export HISTSIZE=1000
+      export HISTFILESIZE=2000
       source ${pkgs.git}/share/bash-completion/completions/git-prompt.sh
       WH="\[\e[0;00m\]"
       RE="\[\e[0;31m\]"
