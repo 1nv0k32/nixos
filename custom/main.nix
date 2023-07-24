@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
-let CONFS = pkgs.callPackage (import ./src/confs.nix) {}; in
-let PKGS = pkgs.callPackage (import ./src/pkgs.nix) {}; in
+let CONFS = pkgs.callPackage (import ./confs.nix) {}; in
+let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
 {
   system.stateVersion = "23.05";
   system.autoUpgrade.enable = true;
@@ -21,7 +21,7 @@ let PKGS = pkgs.callPackage (import ./src/pkgs.nix) {}; in
   networking.firewall.enable = true;
   networking.firewall.allowPing = false;
   networking.firewall.allowedTCPPorts = [  ];
-  networking.firewall.allowedUDPPorts = [  ];
+  networking.firewall.allowedUDPPorts = [ 1900 ];
 
   systemd.extraConfig = CONFS.SYSTEMD_CONFIG;
   systemd.user.extraConfig = CONFS.SYSTEMD_USER_CONFIG;
