@@ -26,7 +26,6 @@
     gimp
     evince
     signal-desktop
-    telegram-desktop
     rivalcfg
 
     gnome.gnome-terminal
