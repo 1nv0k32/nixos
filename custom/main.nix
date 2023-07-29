@@ -18,10 +18,10 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
   networking.networkmanager.enable = true;
   networking.networkmanager.dns = "systemd-resolved";
   networking.networkmanager.extraConfig = CONFS.NETWORK_MANAGER_CONFIG;
-  networking.firewall.enable = true;
+  networking.firewall.enable = false;
   networking.firewall.allowPing = false;
   networking.firewall.allowedTCPPorts = [  ];
-  networking.firewall.allowedUDPPorts = [ 1900 ];
+  networking.firewall.allowedUDPPorts = [  ];
 
   systemd.extraConfig = CONFS.SYSTEMD_CONFIG;
   systemd.user.extraConfig = CONFS.SYSTEMD_USER_CONFIG;
@@ -96,7 +96,6 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
   programs.tmux.extraConfig = CONFS.TMUX_CONFIG;
   programs.mtr.enable = true;
   programs.dconf.enable = true;
-  programs.steam.enable = true;
 
   fonts.fonts = PKGS.FONT;
   fonts.enableDefaultFonts = true;

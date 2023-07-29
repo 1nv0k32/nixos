@@ -13,7 +13,6 @@
     firefox
     chromium
     spotify
-    discord
     flameshot
     otpclient
     winbox
@@ -67,6 +66,7 @@
     virt-manager
     win-virtio
     vagrant
+    podman-compose
 
     nvme-cli
     gparted
