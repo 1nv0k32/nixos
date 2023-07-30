@@ -25,7 +25,6 @@
     vlc
     gimp
     evince
-    signal-desktop
     rivalcfg
 
     gnome.gnome-terminal
