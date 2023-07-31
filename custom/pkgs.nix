@@ -65,6 +65,7 @@
     win-virtio
     vagrant
     podman-compose
+    distrobox
 
     nvme-cli
     gparted
