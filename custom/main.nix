@@ -18,7 +18,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
   networking.networkmanager.enable = true;
   networking.networkmanager.dns = "systemd-resolved";
   networking.networkmanager.extraConfig = CONFS.NETWORK_MANAGER_CONFIG;
-  networking.firewall.enable = false;
+  networking.firewall.enable = true;
   networking.firewall.allowPing = false;
   networking.firewall.allowedTCPPorts = [  ];
   networking.firewall.allowedUDPPorts = [  ];
@@ -68,7 +68,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
 
   sound.enable = true;
   hardware.pulseaudio.enable = false;
-  hardware.bluetooth.powerOnBoot = lib.mkForce(true);
+  hardware.bluetooth.powerOnBoot = lib.mkForce(false);
   security.rtkit.enable = true;
   security.pam.services.gdm.enableGnomeKeyring = true;
   security.pam.services.login.fprintAuth = false;
