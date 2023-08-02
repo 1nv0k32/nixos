@@ -47,6 +47,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
   console.font = "${pkgs.terminus_font}/share/consolefonts/ter-v24b.psf.gz";
   console.keyMap = "us";
 
+  services.fstrim.enable = lib.mkDefault(true);
   services.fwupd.enable = true;
   services.resolved.enable = true;
   services.resolved.extraConfig = CONFS.RESOLVED_CONFIG;
@@ -80,6 +81,9 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
   virtualisation.libvirtd.enable = true;
 
   nixpkgs.config.allowUnfree = lib.mkForce(true);
+  nixpkgs.config.packageOverrides = pkgs: {
+    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  };
 
   environment.etc."inputrc".text = CONFS.INPUTRC_CONFIG;
   environment.etc."bashrc.local".text = CONFS.BASHRC_CONFIG;

@@ -64,6 +64,8 @@
     virt-manager
     win-virtio
     vagrant
+    terraform
+    ansible
     podman-compose
     distrobox
 
