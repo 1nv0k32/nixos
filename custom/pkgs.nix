@@ -21,6 +21,7 @@
     pavucontrol
     networkmanagerapplet
     imagemagick
+    ghostscript
     ffmpeg
     vlc
     gimp

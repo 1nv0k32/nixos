@@ -2,7 +2,7 @@
 let CONFS = pkgs.callPackage (import ./confs.nix) {}; in
 let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
 {
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = false;
 
@@ -69,7 +69,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
 
   sound.enable = true;
   hardware.pulseaudio.enable = false;
-  hardware.bluetooth.powerOnBoot = lib.mkForce(false);
+  hardware.bluetooth.powerOnBoot = lib.mkForce(true);
   security.rtkit.enable = true;
   security.pam.services.gdm.enableGnomeKeyring = true;
   security.pam.services.login.fprintAuth = false;
@@ -101,8 +101,8 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
   programs.mtr.enable = true;
   programs.dconf.enable = true;
 
-  fonts.fonts = PKGS.FONT;
-  fonts.enableDefaultFonts = true;
+  fonts.packages = PKGS.FONT;
+  fonts.enableDefaultPackages = true;
   fonts.fontconfig.defaultFonts = {
     serif = [ "Vazirmatn" "DejaVu Serif" ];
     sansSerif = [ "Vazirmatn" "DejaVu Sans" ];
