@@ -37,31 +37,6 @@
     DefaultTimeoutStopSec=10s
   '';
 
-  LOGIND_CONFIG = ''
-    [Login]
-    KillUserProcesses=no
-    HandlePowerKey=lock
-    HandleSuspendKey=lock
-    HandleHibernateKey=lock
-    HandleLidSwitch=lock
-    HandleLidSwitchExternalPower=lock
-    HandleLidSwitchDocked=lock
-    HandleRebootKey=lock
-    HandleRebootKeyLongPress=lock
-  '';
-
-  CPU_FREQ_CONFIG = {
-    "charger" = {
-      #governor = "performance";
-      governor = "ondemand";
-      turbo = "auto";
-    };
-    "battery" = {
-      governor = "ondemand";
-      turbo = "never";
-    };
-  };
-
   INPUTRC_CONFIG = lib.mkForce(
     builtins.readFile <nixpkgs/nixos/modules/programs/bash/inputrc>
     + 
@@ -124,21 +99,6 @@
     set modeline
     set modelines=1
   '');
-
-  GIT_CONFIG = lib.mkForce(''
-      [init]
-        defaultBranch = main
-      [color]
-        ui = auto
-      [push]
-        autoSetupRemote = true
-        default = current
-      [pull]
-        rebase = true
-      [fetch]
-        prune = true
-        pruneTags = true
-    '');
 
   SSH_CLIENT_CONFIG = ''
     Host *

@@ -2,110 +2,209 @@
 let CONFS = pkgs.callPackage (import ./confs.nix) {}; in
 let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
 {
-  system.stateVersion = "23.11";
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = false;
+  system = {
+    stateVersion = "23.11";
+    autoUpgrade = {
+      enable = true;
+      allowReboot = false;
+    };
+  };
 
-  boot.extraModprobeConfig = "options kvm_amd nested=1";
-  boot.kernelParams = [ "amd_pstate=passive" ];
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.timeout = 0;
-  boot.initrd.systemd.enable = true;
-  boot.initrd.systemd.extraConfig = CONFS.SYSTEMD_CONFIG;
+  boot = {
+    extraModprobeConfig = "options kvm_amd nested=1";
+    kernelParams = [ "amd_pstate=passive" ];
+      loader = {
+        systemd-boot.enable = true;
+        efi.canTouchEfiVariables = true;
+        timeout = 0;
+      };
+    initrd.systemd = {
+      enable = true;
+      extraConfig = CONFS.SYSTEMD_CONFIG;
+    };
+  };
   
-  networking.hostName = "nyx";
-  networking.networkmanager.enable = true;
-  networking.networkmanager.dns = "systemd-resolved";
-  networking.networkmanager.extraConfig = CONFS.NETWORK_MANAGER_CONFIG;
-  networking.firewall.enable = true;
-  networking.firewall.allowPing = false;
-  networking.firewall.allowedTCPPorts = [  ];
-  networking.firewall.allowedUDPPorts = [  ];
-
-  systemd.extraConfig = CONFS.SYSTEMD_CONFIG;
-  systemd.user.extraConfig = CONFS.SYSTEMD_USER_CONFIG;
-
-  time.timeZone = "Europe/Amsterdam";
-
-  i18n.defaultLocale = "en_GB.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_GB.UTF-8";
-    LC_IDENTIFICATION = "en_GB.UTF-8";
-    LC_MEASUREMENT = "en_GB.UTF-8";
-    LC_MONETARY = "en_GB.UTF-8";
-    LC_NAME = "en_GB.UTF-8";
-    LC_NUMERIC = "en_GB.UTF-8";
-    LC_PAPER = "en_GB.UTF-8";
-    LC_TELEPHONE = "en_GB.UTF-8";
-    LC_TIME = "en_GB.UTF-8";
+  networking = {
+    hostName = "nyx";
+    networkmanager = {
+      enable = true;
+      dns = "systemd-resolved";
+      extraConfig = CONFS.NETWORK_MANAGER_CONFIG;
+    };
+    firewall = {
+      enable = true;
+      allowPing = false;
+      allowedTCPPorts = [  ];
+      allowedUDPPorts = [  ];
+    };
   };
 
-  console.earlySetup = true;
-  console.packages = PKGS.CONSOLE;
-  console.font = "${pkgs.terminus_font}/share/consolefonts/ter-v24b.psf.gz";
-  console.keyMap = "us";
-
-  services.fstrim.enable = lib.mkDefault(true);
-  services.fwupd.enable = true;
-  services.resolved.enable = true;
-  services.resolved.extraConfig = CONFS.RESOLVED_CONFIG;
-  services.logind.extraConfig = CONFS.LOGIND_CONFIG;
-  services.power-profiles-daemon.enable = lib.mkForce(false);
-  services.auto-cpufreq.enable = true;
-  services.auto-cpufreq.settings = CONFS.CPU_FREQ_CONFIG;
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.layout = "us";
-  services.pipewire.enable = true;
-  services.pipewire.alsa.enable = true;
-  services.pipewire.alsa.support32Bit = true;
-  services.pipewire.pulse.enable = true;
-  services.fprintd.enable = false;
-  services.tor.enable = true;
-  services.tor.client.enable = true;
-
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  hardware.bluetooth.powerOnBoot = lib.mkForce(true);
-  security.rtkit.enable = true;
-  security.pam.services.gdm.enableGnomeKeyring = true;
-  security.pam.services.login.fprintAuth = false;
-  security.pam.services.gdm-fingerprint.fprintAuth = false;
-
-  virtualisation.podman.enable = true;
-  virtualisation.podman.dockerCompat = true;
-  virtualisation.podman.defaultNetwork.settings.dns_enabled = true;
-  virtualisation.libvirtd.enable = true;
-
-  nixpkgs.config.allowUnfree = lib.mkForce(true);
-  nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  systemd = {
+    extraConfig = CONFS.SYSTEMD_CONFIG;
+    user.extraConfig = CONFS.SYSTEMD_USER_CONFIG;
   };
 
-  environment.etc."inputrc".text = CONFS.INPUTRC_CONFIG;
-  environment.etc."bashrc.local".text = CONFS.BASHRC_CONFIG;
-  environment.etc."vimrc".text = CONFS.VIMRC_CONFIG;
-  environment.etc."gitconfig".text = CONFS.GIT_CONFIG;
+  time = {
+    timeZone = "Europe/Amsterdam";
+    hardwareClockInLocalTime = false;
+  };
 
-  environment.variables.EDITOR = "vim";
+  i18n = {
+    defaultLocale = "en_GB.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_GB.UTF-8";
+      LC_IDENTIFICATION = "en_GB.UTF-8";
+      LC_MEASUREMENT = "en_GB.UTF-8";
+      LC_MONETARY = "en_GB.UTF-8";
+      LC_NAME = "en_GB.UTF-8";
+      LC_NUMERIC = "en_GB.UTF-8";
+      LC_PAPER = "en_GB.UTF-8";
+      LC_TELEPHONE = "en_GB.UTF-8";
+      LC_TIME = "en_GB.UTF-8";
+    };
+  };
 
-  environment.systemPackages = PKGS.SYSTEM;
-  environment.gnome.excludePackages = PKGS.GNOME_EXCLUDE;
+  console = {
+    earlySetup = true;
+    packages = PKGS.CONSOLE;
+    font = "${pkgs.terminus_font}/share/consolefonts/ter-v24b.psf.gz";
+    keyMap = "us";
+  };
 
-  programs.ssh.extraConfig = CONFS.SSH_CLIENT_CONFIG;
-  programs.tmux.enable = true;
-  programs.tmux.extraConfig = CONFS.TMUX_CONFIG;
-  programs.mtr.enable = true;
-  programs.dconf.enable = true;
+  services = {
+    power-profiles-daemon.enable = lib.mkForce(false);
+    fstrim.enable = lib.mkDefault(true);
+    fwupd.enable = true;
+    fprintd.enable = false;
+    resolved = {
+      enable = true;
+      extraConfig = CONFS.RESOLVED_CONFIG;
+    };
+    logind = {
+      killUserProcesses = true;
+      suspendKeyLongPress = "lock";
+      suspendKey = "lock";
+      rebootKeyLongPress = "lock";
+      rebootKey = "lock";
+      powerKeyLongPress = "lock";
+      powerKey = "lock";
+      hibernateKeyLongPress = "lock";
+      hibernateKey = "lock";
+      lidSwitchExternalPower = "lock";
+      lidSwitchDocked = "lock";
+      lidSwitch = "lock";
+    };
+    auto-cpufreq = {
+      enable = true;
+      settings = {
+        "charger" = {
+          #governor = "performance";
+          governor = "ondemand";
+          turbo = "auto";
+        };
+        "battery" = {
+          governor = "ondemand";
+          turbo = "never";
+        };
+      };
+    };
+    xserver = {
+      enable = true;
+      layout = "us";
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
+    };
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
+    tor = {
+      enable = true;
+      client.enable = true;
+    };
+  };
 
-  fonts.packages = PKGS.FONT;
-  fonts.enableDefaultPackages = true;
-  fonts.fontconfig.defaultFonts = {
-    serif = [ "Vazirmatn" "DejaVu Serif" ];
-    sansSerif = [ "Vazirmatn" "DejaVu Sans" ];
+  hardware = {
+    pulseaudio.enable = false;
+    bluetooth.powerOnBoot = lib.mkForce(true);
+  };
+
+  security = {
+    rtkit.enable = true;
+    pam = {
+      services = {
+        gdm.enableGnomeKeyring = true;
+        login.fprintAuth = false;
+        gdm-fingerprint.fprintAuth = false;
+      };
+    };
+  };
+
+  virtualisation = {
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+    libvirtd = {
+      enable = true;
+    };
+  };
+
+  nixpkgs = {
+    config = {
+      allowUnfree = lib.mkForce(true);
+      packageOverrides = pkgs: {
+        vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+      };
+    };
+  };
+
+  environment = {
+    systemPackages = PKGS.SYSTEM;
+    gnome.excludePackages = PKGS.GNOME_EXCLUDE;
+    variables = {
+      EDITOR = "vim";
+    };
+
+    etc = {
+      "inputrc".text = CONFS.INPUTRC_CONFIG;
+      "bashrc.local".text = CONFS.BASHRC_CONFIG;
+      "vimrc".text = CONFS.VIMRC_CONFIG;
+    };
+  };
+
+  programs = {
+    ssh.extraConfig = CONFS.SSH_CLIENT_CONFIG;
+    mtr.enable = true;
+    dconf.enable = true;
+    tmux = {
+      enable = true;
+      extraConfig = CONFS.TMUX_CONFIG;
+    };
+    git = {
+      enable = true;
+      config = {
+        init.defaultBranch = "main";
+        color.ui = "auto";
+        push.autoSetupRemote = true;
+        push.default = "current";
+        pull.rebase = true;
+        fetch.prune = true;
+        fetch.pruneTags = true;
+      };
+    };
+  };
+
+  fonts = {
+    packages = PKGS.FONT;
+    enableDefaultPackages = true;
+    fontconfig.defaultFonts = {
+      serif = [ "Vazirmatn" "DejaVu Serif" ];
+      sansSerif = [ "Vazirmatn" "DejaVu Sans" ];
+    };
   };
 
   users.users.rick = {
