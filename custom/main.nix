@@ -5,7 +5,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
   system = {
     stateVersion = "23.11";
     autoUpgrade = {
-      enable = true;
+      enable = false;
       allowReboot = false;
     };
   };
@@ -42,6 +42,10 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
   systemd = {
     extraConfig = CONFS.SYSTEMD_CONFIG;
     user.extraConfig = CONFS.SYSTEMD_USER_CONFIG;
+    tmpfiles.rules = [
+      "L+ /lib/ld-linux.so.2 - - - - ${pkgs.glibc_multi}/lib/32/ld-linux.so.2"
+      "L+ /lib64/ld-linux-x86-64.so.2 - - - - ${pkgs.glibc}/lib64/ld-linux-x86-64.so.2"
+    ];
   };
 
   time = {
@@ -76,6 +80,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     fstrim.enable = lib.mkDefault(true);
     fwupd.enable = true;
     fprintd.enable = false;
+    flatpak.enable = true;
     resolved = {
       enable = true;
       extraConfig = CONFS.RESOLVED_CONFIG;
@@ -128,7 +133,8 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
 
   hardware = {
     pulseaudio.enable = false;
-    bluetooth.powerOnBoot = lib.mkForce(true);
+    bluetooth.powerOnBoot = lib.mkForce(false);
+    wirelessRegulatoryDatabase = true;
   };
 
   security = {

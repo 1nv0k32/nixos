@@ -27,6 +27,9 @@
     gimp
     evince
     rivalcfg
+    discord
+    transmission
+    transmission-gtk
 
     gnome.gnome-terminal
     gnome.gedit
@@ -55,6 +58,7 @@
 
     wireguard-tools
     openvpn
+    iw
 
     kubectl
     kubernetes-helm
