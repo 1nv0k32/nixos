@@ -30,6 +30,7 @@
     discord
     transmission
     transmission-gtk
+    wpm
 
     gnome.gnome-terminal
     gnome.gedit
@@ -63,6 +64,7 @@
     kubectl
     kubernetes-helm
     k9s
+    argocd
     awscli
     vscode
     jetbrains.pycharm-community

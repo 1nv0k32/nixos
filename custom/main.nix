@@ -32,7 +32,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
       extraConfig = CONFS.NETWORK_MANAGER_CONFIG;
     };
     firewall = {
-      enable = true;
+      enable = false;
       allowPing = false;
       allowedTCPPorts = [  ];
       allowedUDPPorts = [  ];
@@ -103,12 +103,13 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
       enable = true;
       settings = {
         "charger" = {
-          #governor = "performance";
           governor = "ondemand";
           turbo = "auto";
         };
         "battery" = {
           governor = "ondemand";
+          scaling_min_freq = 400000;
+          scaling_max_freq = 1400000;
           turbo = "never";
         };
       };
