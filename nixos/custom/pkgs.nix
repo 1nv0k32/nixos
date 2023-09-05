@@ -10,8 +10,8 @@
   ];
 
   USER = with pkgs; [
-    firefox
     chromium
+    firefox
     spotify
     flameshot
     otpclient
@@ -30,11 +30,13 @@
     discord
     transmission
     transmission-gtk
-    wpm
 
     gnome.gnome-terminal
     gnome.gedit
+    gnome.dconf-editor
     gnome.gnome-tweaks
+  ];
+  GNOME_EXT = with pkgs; [
     gnomeExtensions.just-perfection
     gnomeExtensions.appindicator
     gnomeExtensions.unblank

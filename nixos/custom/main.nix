@@ -3,7 +3,7 @@ let CONFS = pkgs.callPackage (import ./confs.nix) {}; in
 let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
 {
   system = {
-    stateVersion = "23.11";
+    stateVersion = "23.05";
     autoUpgrade = {
       enable = false;
       allowReboot = false;
@@ -87,14 +87,14 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     };
     logind = {
       killUserProcesses = true;
-      suspendKeyLongPress = "lock";
-      suspendKey = "lock";
-      rebootKeyLongPress = "lock";
-      rebootKey = "lock";
-      powerKeyLongPress = "lock";
-      powerKey = "lock";
-      hibernateKeyLongPress = "lock";
-      hibernateKey = "lock";
+    #  suspendKeyLongPress = "lock";
+    #  suspendKey = "lock";
+    #  rebootKeyLongPress = "lock";
+    #  rebootKey = "lock";
+    #  powerKeyLongPress = "lock";
+    #  powerKey = "lock";
+    #  hibernateKeyLongPress = "lock";
+    #  hibernateKey = "lock";
       lidSwitchExternalPower = "lock";
       lidSwitchDocked = "lock";
       lidSwitch = "lock";
@@ -206,23 +206,12 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
   };
 
   fonts = {
-    packages = PKGS.FONT;
-    enableDefaultPackages = true;
+    fonts = PKGS.FONT;
+    enableDefaultFonts = true;
     fontconfig.defaultFonts = {
       serif = [ "Vazirmatn" "DejaVu Serif" ];
       sansSerif = [ "Vazirmatn" "DejaVu Sans" ];
     };
-  };
-
-  users.users.rick = {
-    isNormalUser = true;
-    description = "rick";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "libvirtd"
-    ];
-    packages = PKGS.USER;
   };
 }
 
