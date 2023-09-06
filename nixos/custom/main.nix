@@ -3,7 +3,7 @@ let CONFS = pkgs.callPackage (import ./confs.nix) {}; in
 let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
 {
   system = {
-    stateVersion = "23.05";
+    stateVersion = "23.11";
     autoUpgrade = {
       enable = false;
       allowReboot = false;
@@ -87,14 +87,14 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     };
     logind = {
       killUserProcesses = true;
-    #  suspendKeyLongPress = "lock";
-    #  suspendKey = "lock";
-    #  rebootKeyLongPress = "lock";
-    #  rebootKey = "lock";
-    #  powerKeyLongPress = "lock";
-    #  powerKey = "lock";
-    #  hibernateKeyLongPress = "lock";
-    #  hibernateKey = "lock";
+      suspendKeyLongPress = "lock";
+      suspendKey = "lock";
+      rebootKeyLongPress = "lock";
+      rebootKey = "lock";
+      powerKeyLongPress = "lock";
+      powerKey = "lock";
+      hibernateKeyLongPress = "lock";
+      hibernateKey = "lock";
       lidSwitchExternalPower = "lock";
       lidSwitchDocked = "lock";
       lidSwitch = "lock";
@@ -212,8 +212,8 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
   };
 
   fonts = {
-    fonts = PKGS.FONT;
-    enableDefaultFonts = true;
+    packages = PKGS.FONT;
+    enableDefaultPackages = true;
     fontconfig.defaultFonts = {
       serif = [ "Vazirmatn" "DejaVu Serif" ];
       sansSerif = [ "Vazirmatn" "DejaVu Sans" ];
