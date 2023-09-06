@@ -3,6 +3,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
 {
   users.users."rick" = {
     isNormalUser = true;
+    initialPassword = "rick";
     description = "rick";
     extraGroups = [
       "networkmanager"
@@ -94,6 +95,8 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
         animation = lib.hm.gvariant.mkInt32 3;
         panel = false;
         panel-in-overview = true;
+        double-super-to-appgrid = false;
+        window-demands-attention-focus = true;
         startup-status = lib.hm.gvariant.mkInt32 0;
       };
 
