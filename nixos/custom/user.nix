@@ -1,4 +1,5 @@
 { pkgs, ... }:
+let home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz"; in
 let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
 {
   users.users."rick" = {
@@ -12,6 +13,10 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     ];
     packages = PKGS.USER;
   };
+
+  imports = [
+    (import "${home-manager}/nixos")
+  ];
 
   home-manager.users."rick" = { lib, ... }: {
     home = {

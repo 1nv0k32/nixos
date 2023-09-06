@@ -1,6 +1,5 @@
 { ... }: {
   imports = [
-    <home-manager/nixos>
     ./hardware-configuration.nix
     ./custom/main.nix
     ./custom/user.nix
