@@ -1,3 +1,4 @@
 *.swp
-**/hardware-configuration.nix
+nixos/hardware-configuration.nix
+nixos/system.nix
 
