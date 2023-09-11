@@ -30,11 +30,13 @@
     discord
     transmission
     transmission-gtk
+    pulseaudio
 
     gnome.gnome-terminal
     gnome.gedit
     gnome.dconf-editor
     gnome.gnome-tweaks
+    gnome.nautilus
   ];
   GNOME_EXT = with pkgs; [
     gnomeExtensions.just-perfection
@@ -64,6 +66,7 @@
     iw
 
     kubectl
+    k3s
     kubernetes-helm
     k9s
     argocd
@@ -98,19 +101,6 @@
     python311
     hatch
     poetry
-  ];
-
-  GNOME_EXCLUDE = with pkgs; [
-    gnome-photos
-    gnome-tour
-    gnome-console
-    gnome-text-editor
-    gnome.geary
-    gnome.epiphany
-    gnome.cheese
-    gnome.totem
-    gnome.gnome-music
-    gnome.gnome-characters
   ];
 }
 

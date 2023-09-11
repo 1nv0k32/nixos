@@ -76,10 +76,11 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
   };
 
   services = {
+    avahi.enable = lib.mkForce(false);
+    gnome.core-utilities.enable = lib.mkForce(false);
     power-profiles-daemon.enable = lib.mkForce(false);
     fstrim.enable = lib.mkDefault(true);
     fwupd.enable = true;
-    fprintd.enable = false;
     flatpak.enable = true;
     resolved = {
       enable = true;
@@ -127,8 +128,11 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
       pulse.enable = true;
     };
     tor = {
-      enable = true;
-      client.enable = true;
+      enable = false;
+      client.enable = false;
+    };
+    k3s = {
+      enable = false;
     };
   };
 
@@ -143,8 +147,6 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     pam = {
       services = {
         gdm.enableGnomeKeyring = true;
-        login.fprintAuth = false;
-        gdm-fingerprint.fprintAuth = false;
       };
     };
   };
@@ -177,9 +179,9 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
 
   environment = {
     systemPackages = PKGS.SYSTEM;
-    gnome.excludePackages = PKGS.GNOME_EXCLUDE;
     variables = {
       EDITOR = "vim";
+      VAGRANT_DEFAULT_PROVIDER = "libvirt";
     };
 
     etc = {
