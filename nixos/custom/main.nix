@@ -36,6 +36,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
       allowPing = false;
       allowedTCPPorts = [  ];
       allowedUDPPorts = [  ];
+      extraPackages = [ pkgs.conntrack-tools ];
     };
   };
 

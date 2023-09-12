@@ -62,6 +62,7 @@
     tpm2-tss
 
     wireguard-tools
+    conntrack-tools
     openvpn
     iw
 
