@@ -63,6 +63,7 @@
 
     wireguard-tools
     conntrack-tools
+    nftables
     openvpn
     iw
 

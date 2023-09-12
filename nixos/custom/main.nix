@@ -32,7 +32,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
       extraConfig = CONFS.NETWORK_MANAGER_CONFIG;
     };
     firewall = {
-      enable = false;
+      enable = true;
       allowPing = false;
       allowedTCPPorts = [  ];
       allowedUDPPorts = [  ];
@@ -134,6 +134,18 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     };
     k3s = {
       enable = false;
+    };
+    minidlna = {
+      enable = true;
+      openFirewall = true;
+      settings = {
+        inotify = "yes";
+        notify_interval = 60;
+        friendly_name = "media_server";
+        media_dir = [
+          "V,/home/files/vids"
+        ];
+      };
     };
   };
 
