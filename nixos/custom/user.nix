@@ -108,6 +108,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
         double-super-to-appgrid = false;
         window-demands-attention-focus = true;
         startup-status = lib.hm.gvariant.mkInt32 0;
+        osd-position = lib.hm.gvariant.mkInt32 2;
       };
 
       "org/gnome/desktop/wm/keybindings" = {
