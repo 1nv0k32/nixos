@@ -18,6 +18,9 @@
     winbox
     gns3-gui
     gns3-server
+    dynamips
+    inetutils
+    ubridge
     pavucontrol
     networkmanagerapplet
     imagemagick
@@ -31,12 +34,14 @@
     transmission
     transmission-gtk
     pulseaudio
+    unrar-wrapper
 
     gnome.gnome-terminal
     gnome.gedit
     gnome.dconf-editor
     gnome.gnome-tweaks
     gnome.nautilus
+    gnome.file-roller
   ];
   GNOME_EXT = with pkgs; [
     gnomeExtensions.just-perfection

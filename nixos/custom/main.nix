@@ -32,7 +32,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
       extraConfig = CONFS.NETWORK_MANAGER_CONFIG;
     };
     firewall = {
-      enable = true;
+      enable = false;
       allowPing = false;
       allowedTCPPorts = [  ];
       allowedUDPPorts = [  ];
@@ -133,7 +133,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
       client.enable = false;
     };
     k3s = {
-      enable = false;
+      enable = true;
     };
   };
 
