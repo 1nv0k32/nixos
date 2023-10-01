@@ -2,6 +2,8 @@
 let CONFS = pkgs.callPackage (import ./confs.nix) {}; in
 let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
 {
+  imports = [ ./home.nix ];
+
   system = {
     stateVersion = "23.11";
     autoUpgrade = {
@@ -32,7 +34,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
       extraConfig = CONFS.NETWORK_MANAGER_CONFIG;
     };
     firewall = {
-      enable = false;
+      enable = true;
       allowPing = false;
       allowedTCPPorts = [  ];
       allowedUDPPorts = [  ];
