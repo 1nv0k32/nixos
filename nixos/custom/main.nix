@@ -2,7 +2,7 @@
 let CONFS = pkgs.callPackage (import ./confs.nix) {}; in
 let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
 {
-  imports = [ ./home.nix ];
+  imports = [ ./users.nix ];
 
   system = {
     stateVersion = "23.11";
