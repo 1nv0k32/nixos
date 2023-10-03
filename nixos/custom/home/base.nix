@@ -80,6 +80,13 @@ let PKGS = pkgs.callPackage (import ../pkgs.nix) {}; in
       osd-position = lib.hm.gvariant.mkInt32 2;
     };
 
+    "org/gnome/mutter" = {
+      dynamic-workspaces = true;
+      edge-tilling = true;
+    };
+    "org/gnome/desktop/wm/preferences" = {
+      audible-bell = false;
+    };
     "org/gnome/desktop/wm/keybindings" = {
       close = ["<Super>c"];
       switch-windows = ["<Alt>Tab"];

@@ -106,7 +106,6 @@
     binwalk
 
     python311
-    hatch
     poetry
   ];
 }
