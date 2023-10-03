@@ -83,7 +83,7 @@ with lib.hm.gvariant;
 
     "org/gnome/mutter" = {
       dynamic-workspaces = true;
-      edge-tilling = true;
+      edge-tiling = true;
     };
     "org/gnome/desktop/input-sources" = {
       per-window = true;
