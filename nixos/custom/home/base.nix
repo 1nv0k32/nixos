@@ -1,5 +1,6 @@
 { pkgs, lib, ... }:
 let PKGS = pkgs.callPackage (import ../pkgs.nix) {}; in
+with lib.hm.gvariant;
 {
   programs.home-manager.enable = true;
 
@@ -46,7 +47,7 @@ let PKGS = pkgs.callPackage (import ../pkgs.nix) {}; in
       enable-hot-corners = false;
     };
     "org/gnome/desktop/session" = {
-      idle-delay = lib.hm.gvariant.mkUint32 0;
+      idle-delay = mkUint32 0;
     };
     "org/gnome/desktop/background" = {
       picture-options = "none";
@@ -71,18 +72,22 @@ let PKGS = pkgs.callPackage (import ../pkgs.nix) {}; in
 
     "org/gnome/shell".enabled-extensions = lib.lists.forEach PKGS.GNOME_EXT (e: e.extensionUuid);
     "org/gnome/shell/extensions/just-perfection" = {
-      animation = lib.hm.gvariant.mkInt32 3;
+      animation = mkInt32 3;
       panel = false;
       panel-in-overview = true;
       double-super-to-appgrid = false;
       window-demands-attention-focus = true;
-      startup-status = lib.hm.gvariant.mkInt32 0;
-      osd-position = lib.hm.gvariant.mkInt32 2;
+      startup-status = mkInt32 0;
+      osd-position = mkInt32 2;
     };
 
     "org/gnome/mutter" = {
       dynamic-workspaces = true;
       edge-tilling = true;
+    };
+    "org/gnome/desktop/input-sources" = {
+      per-window = true;
+      sources = [ (mkTuple [ "xkb" "us" ]) (mkTuple [ "xkb" "ir" ]) ];
     };
     "org/gnome/desktop/wm/preferences" = {
       audible-bell = false;
