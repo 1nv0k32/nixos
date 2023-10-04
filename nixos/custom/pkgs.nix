@@ -42,6 +42,7 @@
     gnome.gnome-tweaks
     gnome.nautilus
     gnome.file-roller
+    gnome.gnome-calculator
   ];
   GNOME_EXT = with pkgs; [
     gnomeExtensions.just-perfection
