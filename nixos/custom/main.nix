@@ -135,13 +135,13 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
       client.enable = false;
     };
     k3s = {
-      enable = true;
+      enable = false;
     };
   };
 
   hardware = {
     pulseaudio.enable = false;
-    bluetooth.powerOnBoot = lib.mkForce(true);
+    bluetooth.powerOnBoot = false;
     wirelessRegulatoryDatabase = true;
   };
 
