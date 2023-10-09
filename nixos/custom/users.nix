@@ -18,6 +18,13 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     packages = PKGS.USER ++ PKGS.GNOME_EXT;
   };
 
+  services.xserver = {
+    displayManager = {
+      autoLogin.enable = true;
+      autoLogin.user = "guest";
+    };
+  };
+
   imports = [ ./homes.nix ];
 }
 

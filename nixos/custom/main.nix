@@ -121,8 +121,11 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     xserver = {
       enable = true;
       layout = "us";
-      displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
+      displayManager = {
+        gdm.enable = true;
+        defaultSession = "gnome";
+      };
     };
     pipewire = {
       enable = true;

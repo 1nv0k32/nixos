@@ -80,7 +80,6 @@
     argocd
     awscli
     vscode
-    jetbrains.pycharm-community
     virt-manager
     win-virtio
     vagrant
