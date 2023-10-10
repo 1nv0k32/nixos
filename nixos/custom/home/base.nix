@@ -70,7 +70,10 @@ with lib.hm.gvariant;
       sleep-inactive-battery-type = "nothing";
     };
 
-    "org/gnome/shell".enabled-extensions = lib.lists.forEach PKGS.GNOME_EXT (e: e.extensionUuid);
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions = lib.lists.forEach PKGS.GNOME_EXT (e: e.extensionUuid);
+    };
     "org/gnome/shell/extensions/just-perfection" = {
       animation = mkInt32 3;
       panel = false;
