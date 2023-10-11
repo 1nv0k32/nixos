@@ -166,12 +166,6 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     libvirtd = {
       enable = true;
     };
-    vmVariant = {
-      virtualisation = {
-        memorySize =  8192;
-        cores = 8;
-      };
-    };
   };
 
   nixpkgs = {
