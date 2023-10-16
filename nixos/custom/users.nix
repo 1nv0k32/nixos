@@ -20,7 +20,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
 
   services.xserver = {
     displayManager = {
-      autoLogin.enable = true;
+      autoLogin.enable = false;
       autoLogin.user = "guest";
     };
   };
