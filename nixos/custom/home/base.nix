@@ -76,7 +76,7 @@ with lib.hm.gvariant;
     };
     "org/gnome/shell/extensions/just-perfection" = {
       animation = mkInt32 3;
-      panel = false;
+      panel = true;
       panel-in-overview = true;
       double-super-to-appgrid = false;
       window-demands-attention-focus = true;
