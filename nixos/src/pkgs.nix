@@ -35,6 +35,7 @@
     transmission-gtk
     pulseaudio
     unrar-wrapper
+    cobang
 
     gnome.gnome-terminal
     gnome.gedit
@@ -54,6 +55,7 @@
     vim_configurable
     efibootmgr
     cryptsetup
+    acpi
     git
     tmux
     tree
