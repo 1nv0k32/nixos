@@ -66,6 +66,7 @@
     unzip
     gnumake
     tpm2-tss
+    jq
 
     wireguard-tools
     conntrack-tools

@@ -3,15 +3,6 @@
     ./custom/main.nix
   ];
 
-  virtualisation = {
-    vmVariant = {
-      virtualisation = {
-        memorySize =  8192;
-        cores = 8;
-      };
-    };
-  };
-
   users.users."rick" = {
     initialPassword = "rick";
   };
