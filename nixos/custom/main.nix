@@ -14,7 +14,6 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
 
   boot = {
     extraModprobeConfig = "options kvm_amd nested=1";
-    kernelParams = [ "amd_pstate=passive" ];
       loader = {
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;

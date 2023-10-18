@@ -1,4 +1,2 @@
 *.swp
-nixos/hardware-configuration.nix
-nixos/system.nix
 
