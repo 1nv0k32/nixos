@@ -1,6 +1,6 @@
 { ... }: {
   imports = [
-    ./custom/main.nix
+    ./src/main.nix
   ];
 
   users.users."rick" = {

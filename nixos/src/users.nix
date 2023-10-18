@@ -25,7 +25,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     };
   };
 
-  imports = [ ./homes.nix ];
+  imports = [ ./home.nix ];
 }
 
 # vim:expandtab ts=2 sw=2

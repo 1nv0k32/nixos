@@ -1,7 +1,7 @@
 { ... }: {
   imports = [
     ./hardware-configuration.nix
-    ./custom/main.nix
+    ./src/main.nix
     ./system.nix
   ];
 }

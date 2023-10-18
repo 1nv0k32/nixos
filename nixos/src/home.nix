@@ -3,8 +3,8 @@ let home-manager = builtins.fetchTarball "https://github.com/nix-community/home-
 {
   imports = [
     (import "${home-manager}/nixos")
-    ./home/rick.nix
-    ./home/guest.nix
+    ./homes/rick.nix
+    ./homes/guest.nix
   ];
 }
 
