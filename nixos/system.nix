@@ -1,12 +1,12 @@
 { lib, ... }:
-let nixos-hardware = builtins.fetchTarball "https://github.com/NixOS/nixos-hardware/archive/master.tar.gz"; in
+#let nixos-hardware = builtins.fetchTarball "https://github.com/NixOS/nixos-hardware/archive/master.tar.gz"; in
 {
-  imports = [
-    (import "${nixos-hardware}/lenovo/thinkpad/z/z13")
-  ];
+  #imports = [
+  #  (import "${nixos-hardware}/lenovo/thinkpad/z/z13")
+  #];
 
   boot = {
-    kernelParams = [  ];
+    kernelParams = [ "amd_pstate=passive" ];
     initrd.systemd.contents."/etc/crypttab" = {
       enable = true;
       text = lib.mkForce ''
