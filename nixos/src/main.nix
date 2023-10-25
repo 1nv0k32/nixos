@@ -7,7 +7,9 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
   system = {
     stateVersion = "23.11";
     autoUpgrade = {
-      enable = false;
+      enable = true;
+      operation = "boot";
+      flags = [ "--upgrade-all" ];
       allowReboot = false;
     };
   };
@@ -84,6 +86,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     fstrim.enable = lib.mkDefault(true);
     fwupd.enable = true;
     flatpak.enable = true;
+    fprintd.enable = true;
     resolved = {
       enable = true;
       extraConfig = CONFS.RESOLVED_CONFIG;
@@ -143,7 +146,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
 
   hardware = {
     pulseaudio.enable = false;
-    bluetooth.powerOnBoot = false;
+    bluetooth.powerOnBoot = lib.mkForce(true);
     wirelessRegulatoryDatabase = true;
   };
 
@@ -152,6 +155,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     pam = {
       services = {
         gdm.enableGnomeKeyring = true;
+        gdm-fingerprint.fprintAuth = true;
       };
     };
   };
