@@ -48,7 +48,6 @@
   GNOME_EXT = with pkgs; [
     gnomeExtensions.just-perfection
     gnomeExtensions.appindicator
-    gnomeExtensions.unblank
   ];
 
   SYSTEM = with pkgs; [

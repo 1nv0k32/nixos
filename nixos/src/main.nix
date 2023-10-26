@@ -86,7 +86,6 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     fstrim.enable = lib.mkDefault(true);
     fwupd.enable = true;
     flatpak.enable = true;
-    fprintd.enable = true;
     resolved = {
       enable = true;
       extraConfig = CONFS.RESOLVED_CONFIG;
@@ -155,7 +154,6 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     pam = {
       services = {
         gdm.enableGnomeKeyring = true;
-        gdm-fingerprint.fprintAuth = true;
       };
     };
   };

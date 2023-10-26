@@ -16,6 +16,7 @@
   };
 
   services = {
+    fprintd.enable = lib.mkForce(false);
     tlp.enable = lib.mkForce(false);
     minidlna = {
       enable = true;
