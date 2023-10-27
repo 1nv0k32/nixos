@@ -36,6 +36,7 @@
     pulseaudio
     unrar-wrapper
     cobang
+    alsa-utils
 
     gnome.gnome-terminal
     gnome.gedit
