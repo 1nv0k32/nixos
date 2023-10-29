@@ -144,6 +144,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     };
   };
 
+  sound.enable = true;
   hardware = {
     pulseaudio.enable = false;
     bluetooth.powerOnBoot = lib.mkForce(true);
