@@ -37,6 +37,7 @@
     unrar-wrapper
     cobang
     alsa-utils
+    qflipper
 
     gnome.gnome-terminal
     gnome.gedit
@@ -47,7 +48,6 @@
     gnome.gnome-calculator
   ];
   GNOME_EXT = with pkgs; [
-    gnomeExtensions.just-perfection
     gnomeExtensions.appindicator
   ];
 

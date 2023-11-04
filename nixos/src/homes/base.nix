@@ -69,21 +69,6 @@ with lib.hm.gvariant;
       sleep-inactive-ac-type = "nothing";
       sleep-inactive-battery-type = "nothing";
     };
-
-    "org/gnome/shell" = {
-      disable-user-extensions = false;
-      enabled-extensions = lib.lists.forEach PKGS.GNOME_EXT (e: e.extensionUuid);
-    };
-    "org/gnome/shell/extensions/just-perfection" = {
-      animation = mkInt32 3;
-      panel = true;
-      panel-in-overview = true;
-      double-super-to-appgrid = false;
-      window-demands-attention-focus = true;
-      startup-status = mkInt32 0;
-      osd-position = mkInt32 2;
-    };
-
     "org/gnome/mutter" = {
       dynamic-workspaces = true;
       edge-tiling = true;
@@ -94,6 +79,7 @@ with lib.hm.gvariant;
     };
     "org/gnome/desktop/wm/preferences" = {
       audible-bell = false;
+      auto-raise = true;
     };
     "org/gnome/desktop/wm/keybindings" = {
       close = ["<Super>c"];
@@ -111,6 +97,12 @@ with lib.hm.gvariant;
       name = "gnome-terminal";
       binding = "<Super>Return";
       command = "gnome-terminal --maximize";
+    };
+
+    # Extensions
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions = lib.lists.forEach PKGS.GNOME_EXT (e: e.extensionUuid);
     };
   };
 }
