@@ -104,6 +104,16 @@ with lib.hm.gvariant;
       disable-user-extensions = false;
       enabled-extensions = lib.lists.forEach PKGS.GNOME_EXT (e: e.extensionUuid);
     };
+
+    "org/gnome/shell/extensions/just-perfection" = {
+      animation = mkInt32 3;
+      panel = true;
+      panel-in-overview = true;
+      double-super-to-appgrid = false;
+      window-demands-attention-focus = true;
+      startup-status = mkInt32 0;
+      osd-position = mkInt32 2;
+    };
   };
 }
 
