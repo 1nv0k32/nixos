@@ -6,7 +6,7 @@
   #];
 
   boot = {
-    kernelParams = [ "amd_pstate=passive" ];
+    kernelParams = [ "amd_pstate=passive" "amdgpu.mcbp=0" ];
     initrd.systemd.contents."/etc/crypttab" = {
       enable = true;
       text = lib.mkForce ''

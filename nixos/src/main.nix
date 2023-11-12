@@ -185,7 +185,6 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     variables = {
       EDITOR = "vim";
       VAGRANT_DEFAULT_PROVIDER = "libvirt";
-      MUTTER_DEBUG_KMS_THREAD_TYPE = "user";
     };
 
     etc = {
