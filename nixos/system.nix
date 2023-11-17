@@ -32,6 +32,14 @@
       };
     };
   };
+
+  environment = {
+    etc = {
+      "environment".text = lib.mkForce(''
+        MUTTER_DEBUG_KMS_THREAD_TYPE=user
+      '');
+    };
+  };
 }
 
 # vim:expandtab ts=2 sw=2
