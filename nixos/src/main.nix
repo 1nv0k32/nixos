@@ -15,6 +15,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
   };
 
   boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
     blacklistedKernelModules = [ "snd_pcsp" ];
     extraModprobeConfig = "options kvm_amd nested=1";
       loader = {

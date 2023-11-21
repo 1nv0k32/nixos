@@ -1,12 +1,6 @@
 { lib, ... }:
-#let nixos-hardware = builtins.fetchTarball "https://github.com/NixOS/nixos-hardware/archive/master.tar.gz"; in
 {
-  #imports = [
-  #  (import "${nixos-hardware}/lenovo/thinkpad/z/z13")
-  #];
-
   boot = {
-    kernelParams = [ "amd_pstate=passive" ];
     initrd.systemd.contents."/etc/crypttab" = {
       enable = true;
       text = lib.mkForce ''
@@ -18,8 +12,10 @@
   services = {
     fprintd.enable = lib.mkForce(false);
     tlp.enable = lib.mkForce(false);
+
+    ### DLNA Server ###
     minidlna = {
-      enable = true;
+      enable = false;
       openFirewall = true;
       settings = {
         log_level = "error";
@@ -31,14 +27,7 @@
         ];
       };
     };
-  };
-
-  environment = {
-    etc = {
-      "environment".text = lib.mkForce(''
-        MUTTER_DEBUG_KMS_THREAD_TYPE=user
-      '');
-    };
+    ### DLNA Server ###
   };
 }
 

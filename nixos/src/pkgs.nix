@@ -70,6 +70,7 @@
     gnumake
     tpm2-tss
     jq
+    yq
 
     wireguard-tools
     conntrack-tools
