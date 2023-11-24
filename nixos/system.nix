@@ -1,6 +1,7 @@
 { lib, ... }:
 {
   boot = {
+    kernelParams = [ "amd_pstate=passive" ];
     initrd.systemd.contents."/etc/crypttab" = {
       enable = true;
       text = lib.mkForce ''
@@ -10,10 +11,11 @@
   };
 
   services = {
-    fprintd.enable = lib.mkForce(false);
-    tlp.enable = lib.mkForce(false);
+    fprintd.enable = true;
 
+    ###################
     ### DLNA Server ###
+    ###################
     minidlna = {
       enable = false;
       openFirewall = true;
@@ -27,7 +29,9 @@
         ];
       };
     };
+    ###################
     ### DLNA Server ###
+    ###################
   };
 }
 
