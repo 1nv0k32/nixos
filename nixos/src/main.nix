@@ -157,6 +157,8 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     pam = {
       services = {
         gdm.enableGnomeKeyring = true;
+        login.fprintAuth = false;
+        gdm-fingerprint.fprintAuth = true;
       };
     };
   };
