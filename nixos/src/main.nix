@@ -5,7 +5,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
   imports = [ ./users.nix ];
 
   system = {
-    stateVersion = "23.11";
+    stateVersion = "24.05";
     autoUpgrade = {
       enable = true;
       operation = "boot";
