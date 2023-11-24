@@ -106,7 +106,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/shell/extensions/just-perfection" = {
-      animation = mkInt32 3;
+      animation = mkInt32 4;
       panel = true;
       panel-in-overview = true;
       double-super-to-appgrid = false;
