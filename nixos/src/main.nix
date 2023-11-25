@@ -147,6 +147,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
 
   sound.enable = true;
   hardware = {
+    opengl.driSupport32Bit = true;
     pulseaudio.enable = false;
     bluetooth.powerOnBoot = lib.mkForce(true);
     wirelessRegulatoryDatabase = true;
@@ -157,8 +158,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     pam = {
       services = {
         gdm.enableGnomeKeyring = true;
-        login.fprintAuth = false;
-        gdm-fingerprint.fprintAuth = true;
+        gdm.fprintAuth = false;
       };
     };
   };
@@ -201,6 +201,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     ssh.extraConfig = CONFS.SSH_CLIENT_CONFIG;
     mtr.enable = true;
     dconf.enable = true;
+    steam.enable = true;
     tmux = {
       enable = true;
       extraConfig = CONFS.TMUX_CONFIG;
