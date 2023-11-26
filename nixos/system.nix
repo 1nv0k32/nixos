@@ -17,7 +17,7 @@
     ### DLNA Server ###
     ###################
     minidlna = {
-      enable = false;
+      enable = true;
       openFirewall = true;
       settings = {
         log_level = "error";
