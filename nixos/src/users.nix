@@ -1,6 +1,10 @@
 { pkgs, ... }:
 let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
 {
+  users.groups."ubridge" = {
+    name = "ubridge";
+  };
+
   users.users."rick" = {
     uid = 1000;
     isNormalUser = true;
@@ -8,6 +12,8 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
       "networkmanager"
       "wheel"
       "libvirtd"
+      "ubridge"
+      "wireshark"
     ];
     packages = PKGS.USER ++ PKGS.GNOME_EXT;
   };

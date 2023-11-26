@@ -161,6 +161,13 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
         gdm.fprintAuth = false;
       };
     };
+    wrappers.ubridge = {
+      source = "${pkgs.ubridge}/bin/ubridge";
+      capabilities = "cap_net_admin,cap_net_raw=ep";
+      owner = "root";
+      group = "ubridge";
+      permissions = "u+rx,g+x";
+    };
   };
 
   virtualisation = {
@@ -202,6 +209,10 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     mtr.enable = true;
     dconf.enable = true;
     steam.enable = true;
+    wireshark = {
+      enable = true;
+      package = pkgs.wireshark;
+    };
     tmux = {
       enable = true;
       extraConfig = CONFS.TMUX_CONFIG;

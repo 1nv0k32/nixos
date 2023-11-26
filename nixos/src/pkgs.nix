@@ -20,7 +20,6 @@
     gns3-server
     dynamips
     inetutils
-    ubridge
     pavucontrol
     networkmanagerapplet
     imagemagick
@@ -77,6 +76,7 @@
     conntrack-tools
     nftables
     openvpn
+    ubridge
     iw
 
     kubectl
@@ -102,7 +102,6 @@
     usbutils
     pciutils
 
-    wireshark
     nmap
     burpsuite
     radare2
