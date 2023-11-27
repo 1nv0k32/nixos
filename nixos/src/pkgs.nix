@@ -94,7 +94,6 @@
     podman-compose
     distrobox
     quickemu
-    quickgui
 
     nvme-cli
     gparted
