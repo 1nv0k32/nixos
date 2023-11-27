@@ -81,7 +81,6 @@
     iw
 
     kubectl
-    k3s
     kubernetes-helm
     k9s
     argocd
@@ -94,6 +93,8 @@
     ansible
     podman-compose
     distrobox
+    quickemu
+    quickgui
 
     nvme-cli
     gparted
