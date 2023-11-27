@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 let CONFS = pkgs.callPackage (import ./confs.nix) {}; in
 let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
 {

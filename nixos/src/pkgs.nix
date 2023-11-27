@@ -37,6 +37,7 @@
     cobang
     alsa-utils
     qflipper
+    bitwarden
 
     gnome.gnome-terminal
     gnome.gedit
