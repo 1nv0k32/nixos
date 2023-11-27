@@ -13,6 +13,22 @@
   services = {
     fprintd.enable = true;
 
+    auto-cpufreq = {
+      enable = true;
+      settings = {
+        "charger" = {
+          governor = "ondemand";
+          turbo = "auto";
+        };
+        "battery" = {
+          governor = "ondemand";
+          scaling_min_freq = 400000;
+          scaling_max_freq = 1200000;
+          turbo = "never";
+        };
+      };
+    };
+
     ###################
     ### DLNA Server ###
     ###################

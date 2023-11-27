@@ -106,21 +106,6 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
       lidSwitchDocked = "lock";
       lidSwitch = "lock";
     };
-    auto-cpufreq = {
-      enable = true;
-      settings = {
-        "charger" = {
-          governor = "ondemand";
-          turbo = "auto";
-        };
-        "battery" = {
-          governor = "ondemand";
-          scaling_min_freq = 400000;
-          scaling_max_freq = 1200000;
-          turbo = "never";
-        };
-      };
-    };
     xserver = {
       enable = true;
       layout = "us";
