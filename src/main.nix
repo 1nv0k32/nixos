@@ -2,7 +2,7 @@
 let customConfs = pkgs.callPackage (import ./confs.nix) {}; in
 let customPkgs = pkgs.callPackage (import ./pkgs.nix) {}; in
 {
-  imports = [ (import ./users.nix { customPkgs = customPkgs; homeManager = homeManager; }) ];
+  imports = [ (import ./users.nix { customPkgs = customPkgs; }) ];
 
   nix = {
     extraOptions = customConfs.NIX_CONFIG;
