@@ -1,5 +1,5 @@
 { lib, ... }:
-let configRepo = builtins.fetchGit { url = "https://github.com/1nv0k32/NixOS.git"; ref = "main"; }; in
+let configRepo = builtins.fetchGit "https://github.com/1nv0k32/NixOS.git"; in
 {
   imports = [
     ./hardware-configuration.nix
