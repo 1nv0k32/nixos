@@ -49,6 +49,8 @@
     ### DLNA Server ###
     ###################
   };
+
+  systemd.services.minidlna.wantedBy = lib.mkForce [ ];
 }
 
 # vim:expandtab ts=2 sw=2
