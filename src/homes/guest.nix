@@ -3,7 +3,7 @@
     home = {
       username = "guest";
       homeDirectory = "/home/guest";
-      stateVersion = "23.11";
+      stateVersion = "24.05";
     };
 
     imports = [ (import ./base.nix { customPkgs = customPkgs; }) ];
