@@ -29,9 +29,10 @@ with lib.hm.gvariant;
   programs.chromium = {
     enable = true;
     extensions = [
+      { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
       { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
       { id = "ponfpcnoihfmfllpaingbgckeeldkhle"; } # enhancer for youtube
-      { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
+      { id = "dhegojkfhodaifdnkoigmdoncoonbifd"; } # watch later for youtube
     ];
   };
 
