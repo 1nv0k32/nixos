@@ -3,7 +3,7 @@ let homeManager = builtins.fetchTarball "https://github.com/nix-community/home-m
 let customConfs = pkgs.callPackage (import "${configRepo}/src/confs.nix") {}; in
 let customPkgs = pkgs.callPackage (import "${configRepo}/src/pkgs.nix") {}; in
 {
-  #imports = [ "${configRepo}/src/users.nix" ];
+  imports = [ "${configRepo}/src/users.nix" ];
 
   system = {
     stateVersion = "24.05";
