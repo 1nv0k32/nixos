@@ -1,4 +1,6 @@
-{ configRepo, customPkgs, homeManager, pkgs, ... }: {
+{ customPkgs, ... }: { pkgs, ... }:
+let homeManager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz"; in
+{
   users.groups."ubridge" = {
     name = "ubridge";
   };
@@ -31,8 +33,8 @@
 
   imports = [
     (import "${homeManager}/nixos")
-    "${configRepo}/src/homes/rick.nix"
-    "${configRepo}/src/homes/guest.nix"
+    (import ./homes/rick.nix { customPkgs = customPkgs; })
+    (import ./homes/guest.nix { customPkgs = customPkgs; })
   ];
 }
 

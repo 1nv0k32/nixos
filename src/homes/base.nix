@@ -1,4 +1,4 @@
-{ homeManager, customPkgs, pkgs, lib, ... }:
+{ customPkgs, ... }: { pkgs, lib, ... }:
 with lib.hm.gvariant;
 {
   programs.home-manager.enable = true;
@@ -102,7 +102,7 @@ with lib.hm.gvariant;
     # Extensions
     "org/gnome/shell" = {
       disable-user-extensions = false;
-      enabled-extensions = lib.lists.forEach PKGS.GNOME_EXT (e: e.extensionUuid);
+      enabled-extensions = lib.lists.forEach customPkgs.GNOME_EXT (e: e.extensionUuid);
     };
 
     "org/gnome/shell/extensions/just-perfection" = {

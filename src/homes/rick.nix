@@ -1,4 +1,4 @@
-{ homeManager, configRepo, ... }:
+{ customPkgs, ... }: { ... }:
 {
   home-manager.users."rick" = { ... }: {
     home = {
@@ -13,7 +13,7 @@
       userEmail = "Armin.Mahdilou@gmail.com";
     };
 
-    imports = [ "${configRepo}nixos/src/base.nix" ];
+    imports = [ (import ./base.nix { customPkgs = customPkgs; }) ];
   };
 }
 

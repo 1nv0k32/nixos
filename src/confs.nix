@@ -1,5 +1,9 @@
 { pkgs, lib }:
-{ 
+{
+  NIX_CONFIG = ''
+    tarball-ttl = 0
+  ''; 
+
   NETWORK_MANAGER_CONFIG  = ''
     [main]
     dns=none

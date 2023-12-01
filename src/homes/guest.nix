@@ -1,5 +1,4 @@
-{ homeManager, configRepo, ... }:
-{
+{ customPkgs, ... }: { ... }: {
   home-manager.users."guest" = { ... }: {
     home = {
       username = "guest";
@@ -7,7 +6,7 @@
       stateVersion = "23.11";
     };
 
-    imports = [ "${configRepo}nixos/src/base.nix" ];
+    imports = [ (import ./base.nix { customPkgs = customPkgs; }) ];
   };
 }
 

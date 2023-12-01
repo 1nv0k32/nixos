@@ -1,9 +1,9 @@
 { lib, ... }:
-let configRepo = builtins.fetchGit "https://github.com/1nv0k32/NixOS.git"; in
+let configRepo = builtins.fetchGit { url = "https://github.com/1nv0k32/NixOS.git"; ref = "main"; }; in
 {
   imports = [
     ./hardware-configuration.nix
-    "${configRepo}/src/main.nix"
+    (import "${configRepo}/src/main.nix")
   ] ++
   lib.optional (builtins.pathExists ./system.nix) ./system.nix;
 }

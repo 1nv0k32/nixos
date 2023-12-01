@@ -1,9 +1,12 @@
-{ configRepo, config, pkgs, lib, ... }:
-let homeManager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz"; in
-let customConfs = pkgs.callPackage (import "${configRepo}/src/confs.nix") {}; in
-let customPkgs = pkgs.callPackage (import "${configRepo}/src/pkgs.nix") {}; in
+{ config, pkgs, lib, ... }:
+let customConfs = pkgs.callPackage (import ./confs.nix) {}; in
+let customPkgs = pkgs.callPackage (import ./pkgs.nix) {}; in
 {
-  imports = [ "${configRepo}/src/users.nix" ];
+  imports = [ (import ./users.nix { customPkgs = customPkgs; homeManager = homeManager; }) ];
+
+  nix = {
+    extraOptions = customConfs.NIX_CONFIG;
+  };
 
   system = {
     stateVersion = "24.05";
