@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
-{
+{ configRepo, customPkgs, homeManager, pkgs, ... }: {
   users.groups."ubridge" = {
     name = "ubridge";
   };
@@ -15,13 +13,13 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
       "ubridge"
       "wireshark"
     ];
-    packages = PKGS.USER ++ PKGS.GNOME_EXT;
+    packages = customPkgs.USER ++ customPkgs.GNOME_EXT;
   };
 
   users.users."guest" = {
     uid = 1001;
     isNormalUser = true;
-    packages = PKGS.USER ++ PKGS.GNOME_EXT;
+    packages = customPkgs.USER ++ customPkgs.GNOME_EXT;
   };
 
   services.xserver = {
@@ -31,7 +29,11 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     };
   };
 
-  imports = [ ./home.nix ];
+  imports = [
+    (import "${homeManager}/nixos")
+    "${configRepo}/src/homes/rick.nix"
+    "${configRepo}/src/homes/guest.nix"
+  ];
 }
 
 # vim:expandtab ts=2 sw=2

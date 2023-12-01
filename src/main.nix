@@ -1,8 +1,9 @@
-{ config, pkgs, lib, ... }:
-let CONFS = pkgs.callPackage (import ./confs.nix) {}; in
-let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
+{ configRepo, config, pkgs, lib, ... }:
+let homeManager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz"; in
+let customConfs = pkgs.callPackage (import "${configRepo}/src/confs.nix") {}; in
+let customPkgs = pkgs.callPackage (import "${configRepo}/src/pkgs.nix") {}; in
 {
-  imports = [ ./users.nix ];
+  imports = [ "${configRepo}/src/users.nix" ];
 
   system = {
     stateVersion = "24.05";
@@ -25,7 +26,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
       };
     initrd.systemd = {
       enable = true;
-      extraConfig = CONFS.SYSTEMD_CONFIG;
+      extraConfig = customConfs.SYSTEMD_CONFIG;
     };
   };
   
@@ -34,7 +35,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     networkmanager = {
       enable = true;
       dns = "systemd-resolved";
-      extraConfig = CONFS.NETWORK_MANAGER_CONFIG;
+      extraConfig = customConfs.NETWORK_MANAGER_CONFIG;
     };
     firewall = {
       enable = true;
@@ -46,8 +47,8 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
   };
 
   systemd = {
-    extraConfig = CONFS.SYSTEMD_CONFIG;
-    user.extraConfig = CONFS.SYSTEMD_USER_CONFIG;
+    extraConfig = customConfs.SYSTEMD_CONFIG;
+    user.extraConfig = customConfs.SYSTEMD_USER_CONFIG;
     tmpfiles.rules = [
       "L+ /lib/ld-linux.so.2 - - - - ${pkgs.glibc_multi}/lib/32/ld-linux.so.2"
       "L+ /lib64/ld-linux-x86-64.so.2 - - - - ${pkgs.glibc}/lib64/ld-linux-x86-64.so.2"
@@ -76,7 +77,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
 
   console = {
     earlySetup = true;
-    packages = PKGS.CONSOLE;
+    packages = customPkgs.CONSOLE;
     font = "${pkgs.terminus_font}/share/consolefonts/ter-v24b.psf.gz";
     keyMap = "us";
   };
@@ -90,7 +91,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     flatpak.enable = true;
     resolved = {
       enable = true;
-      extraConfig = CONFS.RESOLVED_CONFIG;
+      extraConfig = customConfs.RESOLVED_CONFIG;
     };
     logind = {
       killUserProcesses = true;
@@ -176,21 +177,21 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
   };
 
   environment = {
-    systemPackages = PKGS.SYSTEM;
+    systemPackages = customPkgs.SYSTEM;
     variables = {
       EDITOR = "vim";
       VAGRANT_DEFAULT_PROVIDER = "libvirt";
     };
 
     etc = {
-      "inputrc".text = CONFS.INPUTRC_CONFIG;
-      "bashrc.local".text = CONFS.BASHRC_CONFIG;
-      "vimrc".text = CONFS.VIMRC_CONFIG;
+      "inputrc".text = customConfs.INPUTRC_CONFIG;
+      "bashrc.local".text = customConfs.BASHRC_CONFIG;
+      "vimrc".text = customConfs.VIMRC_CONFIG;
     };
   };
 
   programs = {
-    ssh.extraConfig = CONFS.SSH_CLIENT_CONFIG;
+    ssh.extraConfig = customConfs.SSH_CLIENT_CONFIG;
     mtr.enable = true;
     dconf.enable = true;
     steam.enable = true;
@@ -200,7 +201,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
     };
     tmux = {
       enable = true;
-      extraConfig = CONFS.TMUX_CONFIG;
+      extraConfig = customConfs.TMUX_CONFIG;
     };
     git = {
       enable = true;
@@ -217,7 +218,7 @@ let PKGS = pkgs.callPackage (import ./pkgs.nix) {}; in
   };
 
   fonts = {
-    packages = PKGS.FONT;
+    packages = customPkgs.FONT;
     enableDefaultPackages = true;
     fontconfig.defaultFonts = {
       serif = [ "Vazirmatn" "DejaVu Serif" ];

@@ -1,5 +1,4 @@
-{ pkgs, lib, ... }:
-let PKGS = pkgs.callPackage (import ../pkgs.nix) {}; in
+{ homeManager, customPkgs, pkgs, lib, ... }:
 with lib.hm.gvariant;
 {
   programs.home-manager.enable = true;

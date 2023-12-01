@@ -1,4 +1,4 @@
-{ ... }:
+{ homeManager, configRepo, ... }:
 {
   home-manager.users."guest" = { ... }: {
     home = {
@@ -7,7 +7,7 @@
       stateVersion = "23.11";
     };
 
-    imports = [ ./base.nix ];
+    imports = [ "${configRepo}nixos/src/base.nix" ];
   };
 }
 

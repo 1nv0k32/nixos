@@ -1,4 +1,4 @@
-{ ... }:
+{ homeManager, configRepo, ... }:
 {
   home-manager.users."rick" = { ... }: {
     home = {
@@ -13,7 +13,7 @@
       userEmail = "Armin.Mahdilou@gmail.com";
     };
 
-    imports = [ ./base.nix ];
+    imports = [ "${configRepo}nixos/src/base.nix" ];
   };
 }
 
