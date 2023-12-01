@@ -1,8 +1,8 @@
-{ lib, ... }: {
+{ lib, pkgs, ... }: {
   networking = {
     hostName = lib.mkForce "vmnix";
     firewall = {
-      allowPing = lib.mkForce false;
+      allowPing = lib.mkForce true;
       allowedTCPPorts = lib.mkForce [ 22 ];
       allowedUDPPorts = lib.mkForce [  ];
       extraPackages = lib.mkForce [ pkgs.conntrack-tools ];
