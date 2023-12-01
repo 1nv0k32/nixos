@@ -3,7 +3,7 @@ let configRepo = builtins.fetchGit { url = "https://github.com/1nv0k32/NixOS.git
 {
   imports = [
     ./hardware-configuration.nix
-    (import "${configRepo}/src/main.nix")
+    (import "${configRepo}/src")
     (import "${configRepo}/system/z13.nix")
   ];
 }
