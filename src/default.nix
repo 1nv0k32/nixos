@@ -22,11 +22,15 @@ let customPkgs = pkgs.callPackage (import ./pkgs.nix) {}; in
     kernelPackages = pkgs.linuxPackages_latest;
     blacklistedKernelModules = [ "snd_pcsp" ];
     extraModprobeConfig = "options kvm_amd nested=1";
-      loader = {
-        systemd-boot.enable = true;
-        efi.canTouchEfiVariables = true;
-        timeout = 0;
+    loader = {
+      efi.canTouchEfiVariables = lib.mkDefault true;
+      timeout = 0;
+      systemd-boot = {
+        enable = true;
+        editor = lib.mkForce false;
+        consoleMode = "max";
       };
+    };
     initrd.systemd = {
       enable = true;
       extraConfig = customConfs.SYSTEMD_CONFIG;
