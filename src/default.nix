@@ -10,6 +10,7 @@ let customPkgs = pkgs.callPackage (import ./pkgs.nix) {}; in
 
   system = {
     stateVersion = "24.05";
+    copySystemConfiguration = lib.mkDefault true;
     autoUpgrade = {
       enable = true;
       operation = "boot";
