@@ -91,12 +91,18 @@ with lib.hm.gvariant;
       home = ["<Super>e"];
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
       ];
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       name = "gnome-terminal";
       binding = "<Super>Return";
       command = "gnome-terminal --maximize";
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+      name = "suspend";
+      binding = "<Super><Shift>S";
+      command = "systemctl suspend";
     };
 
     # Extensions
