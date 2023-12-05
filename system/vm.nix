@@ -1,4 +1,12 @@
 { lib, pkgs, ... }: {
+  virtualisation.vmVariant = {
+    virtualisation = {
+      memorySize = 8192;
+      cores = 6;
+    };
+  };
+  users.users."rick".initialPassword = "rick";
+
   networking = {
     hostName = lib.mkForce "vmnix";
     firewall = {
