@@ -10,7 +10,6 @@ let customPkgs = pkgs.callPackage (import ./pkgs.nix) {}; in
 
   system = {
     stateVersion = "24.05";
-    copySystemConfiguration = lib.mkDefault true;
     autoUpgrade = {
       enable = true;
       operation = "boot";
@@ -27,13 +26,13 @@ let customPkgs = pkgs.callPackage (import ./pkgs.nix) {}; in
       efi.canTouchEfiVariables = lib.mkDefault true;
       timeout = 0;
       systemd-boot = {
-        enable = true;
+        enable = lib.mkDefault true;
         editor = lib.mkForce false;
         consoleMode = "max";
       };
     };
     initrd.systemd = {
-      enable = true;
+      enable = lib.mkDefault true;
       extraConfig = customConfs.SYSTEMD_CONFIG;
     };
   };
