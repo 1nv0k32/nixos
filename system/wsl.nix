@@ -1,4 +1,4 @@
-{ lib, modulesPath, ... }: {
+{ lib, ... }: {
   imports = [
     <nixos-wsl/modules>
   ];
@@ -7,6 +7,8 @@
     enable = true;
     defaultUser = "rick";
   };
+
+  boot.loader.systemd-boot.enable = lib.mkForce false;
 }
 
 # vim:expandtab ts=2 sw=2
