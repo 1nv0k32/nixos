@@ -31,7 +31,10 @@ with lib.hm.gvariant;
         esac
       done
       git update-index --skip-worktree configuration.nix
-    )'';
+    )
+    
+    alias cat='bat'
+      '';
   };
 
   programs.ssh = {
