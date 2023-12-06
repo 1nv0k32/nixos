@@ -31,9 +31,6 @@ with lib;
       };
     };
 
-    ###################
-    ### DLNA Server ###
-    ###################
     minidlna = {
       enable = true;
       openFirewall = true;
@@ -47,9 +44,6 @@ with lib;
         ];
       };
     };
-    ###################
-    ### DLNA Server ###
-    ###################
   };
 
   systemd.services.minidlna.wantedBy = mkForce [];
