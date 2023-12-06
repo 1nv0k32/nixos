@@ -3,6 +3,36 @@ with lib.hm.gvariant;
 {
   programs.home-manager.enable = true;
 
+  programs.bash = {
+    enable = true;
+    bashrcExtra = ''
+    confCommit() (
+      cd -- ~/nixos || exit
+      while true; do
+        read -p "Do you wish to commit configuration.nix changes? [yN] " yn_conf
+        case $yn_conf in
+            [Yy]* )
+              git update-index --no-skip-worktree configuration.nix
+              ;;
+        esac
+        git diff
+        read -p "Do you wish to commit these changes? [yN] " yn
+        case $yn in
+            [Yy]* )
+              git add .
+              git commit -m "Conf changed"
+              git push
+              break
+              ;;
+            * )
+              break
+              ;;
+        esac
+      done
+      git update-index --skip-worktree configuration.nix
+    )'';
+  };
+
   programs.ssh = {
     enable = true;
     includes = ["~/.ssh/config.d/*.config"];
