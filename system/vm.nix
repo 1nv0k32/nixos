@@ -6,6 +6,7 @@
     };
   };
   users.users."rick".initialPassword = "rick";
+  boot.kernelParams = [ "console=tty0" ];
 
   networking = {
     hostName = lib.mkForce "vmnix";
