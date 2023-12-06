@@ -7,6 +7,7 @@
     enable = true;
     defaultUser = "rick";
     wslConf = {
+      interop.enabled = true;
       network.generateResolvConf = false;
     };
   };
@@ -25,7 +26,9 @@
     wantedBy = [ "multi-user.target" ];
   };
 
-  services.resolved.extraConfig = lib.mkForce ''
+  services.resolved = {
+    enable = lib.mkForce true;
+    extraConfig = lib.mkForce ''
     [Resolve]
     DNS=8.8.8.8
     #Domains=
