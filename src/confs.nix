@@ -42,7 +42,7 @@ with lib;
     DefaultTimeoutStopSec=10s
   '';
 
-  INPUTRC_CONFIG = mkForce
+  INPUTRC_CONFIG = mkForce(
     builtins.readFile <nixpkgs/nixos/modules/programs/bash/inputrc>
     + 
     ''
@@ -52,7 +52,7 @@ with lib;
       set visible-stats on
       set colored-stats on
       set mark-symlinked-directories on
-    '';
+    '');
 
   BASHRC_CONFIG = mkDefault ''
       shopt -s histappend
