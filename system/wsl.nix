@@ -6,6 +6,9 @@
   wsl = {
     enable = true;
     defaultUser = "rick";
+    wslConf = {
+      generateResolvConf = false;
+    };
   };
 
   environment.systemPackages = with pkgs; [
