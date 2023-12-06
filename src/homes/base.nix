@@ -7,7 +7,8 @@ with lib.hm.gvariant;
     enable = true;
     bashrcExtra = ''
     confCommit() (
-      cd -- $1 || exit
+      [ -z $1 ] && exit 1
+      cd -- $1 || exit 1
       while true; do
         read -p "Do you wish to commit configuration.nix changes? [yN] " yn_conf
         case $yn_conf in
