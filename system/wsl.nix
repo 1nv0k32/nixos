@@ -18,12 +18,10 @@
   systemd.services."wsl-vpnkit" = {
     enable = true;
     description = "wsl-vpnkit service"
-    unitConfig = {
-      After = "network.target";
-    };
     serviceConfig = {
       ExecStart = "${pkgs.wsl-vpnkit}/bin/wsl-vpnkit";
     };
+    after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
   };
 
