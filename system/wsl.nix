@@ -40,6 +40,7 @@
     CacheFromLocalhost=no
     DNSStubListener=no
   '';
+  };
 
   boot.loader.systemd-boot.enable = lib.mkForce false;
   networking.networkmanager.enable = lib.mkForce false;
