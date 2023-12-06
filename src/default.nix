@@ -81,7 +81,7 @@ with lib;
     avahi.enable = mkForce false;
     gnome.core-utilities.enable = mkForce false ;
     fstrim.enable = mkDefault true;
-    fwupd.enable = mkDefaulttrue;
+    fwupd.enable = mkDefault true;
     flatpak.enable = mkDefault true;
     resolved = {
       enable = mkDefault true;
