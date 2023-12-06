@@ -53,6 +53,7 @@
   ];
 
   SYSTEM = with pkgs; [
+    nixos-generators
     vim_configurable
     efibootmgr
     cryptsetup
