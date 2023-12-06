@@ -173,8 +173,8 @@ with lib;
   environment = {
     systemPackages = customPkgs.SYSTEM;
     variables = {
-      EDITOR = mkDefault "vim";
-      VAGRANT_DEFAULT_PROVIDER = mkDefault "libvirt";
+      EDITOR = mkForce "vim";
+      VAGRANT_DEFAULT_PROVIDER = mkForce "libvirt";
     };
 
     etc = {
