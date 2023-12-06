@@ -39,4 +39,3 @@ let homeManager = builtins.fetchTarball "https://github.com/nix-community/home-m
 }
 
 # vim:expandtab ts=2 sw=2
-

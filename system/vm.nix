@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }: {
+{ options, ... }: {
   virtualisation.vmVariant = {
     virtualisation = {
       memorySize = 8192;
@@ -6,23 +6,20 @@
     };
   };
   users.users."rick".initialPassword = "rick";
-  boot.kernelParams = [ "console=tty0" ];
+  boot.kernelParams = options.boot.kernelParams.default ++ [ "console=tty0" ];
 
   networking = {
-    hostName = lib.mkForce "vmnix";
+    hostName = "vmnix";
     firewall = {
-      allowPing = lib.mkForce true;
-      allowedTCPPorts = lib.mkForce [ 22 ];
-      allowedUDPPorts = lib.mkForce [  ];
-      extraPackages = lib.mkForce [ pkgs.conntrack-tools ];
+      allowPing = true;
+      allowedTCPPorts = options.networking.firefox.allowedTCPPorts.default ++ [ 22 ];
     };
   };
   services = {
-    k3s.enable = lib.mkForce true;
+    k3s.enable = true;
     qemuGuest.enable = true;
     openssh.enable = true;
   };
 }
 
 # vim:expandtab ts=2 sw=2
-

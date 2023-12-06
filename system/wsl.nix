@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }: {
+{ pkgs, ... }: {
   imports = [
     <nixos-wsl/modules>
   ];
@@ -29,8 +29,8 @@
   };
 
   services.resolved = {
-    enable = lib.mkForce true;
-    extraConfig = lib.mkForce ''
+    enable = true;
+    extraConfig = ''
     [Resolve]
     DNS=8.8.8.8
     #Domains=
@@ -44,10 +44,9 @@
   '';
   };
 
-  boot.loader.systemd-boot.enable = lib.mkForce false;
-  networking.networkmanager.enable = lib.mkForce false;
-  networking.firewall.enable = lib.mkForce false;
+  boot.loader.systemd-boot.enable = false;
+  networking.networkmanager.enable = false;
+  networking.firewall.enable = false;
 }
 
 # vim:expandtab ts=2 sw=2
-

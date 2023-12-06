@@ -1,10 +1,11 @@
-{ lib, ... }:
+{ options, lib, ... }:
+with lib;
 {
   boot = {
-    kernelParams = [ "amd_pstate=passive" ];
+    kernelParams = options.boot.kernelParams.default ++ [ "amd_pstate=passive" ];
     initrd.systemd.contents."/etc/crypttab" = {
       enable = true;
-      text = lib.mkForce ''
+      text = mkForce ''
         root UUID=98d2d55d-2272-4116-9267-2ca7746c616a none tpm2-device=auto
       '';
     };
@@ -12,6 +13,7 @@
 
   services = {
     fprintd.enable = true;
+    power-profiles-daemon.enable = mkForce false;
 
     auto-cpufreq = {
       enable = true;
@@ -50,7 +52,7 @@
     ###################
   };
 
-  systemd.services.minidlna.wantedBy = lib.mkForce [ ];
+  systemd.services.minidlna.wantedBy = mkForce [];
 }
 
 # vim:expandtab ts=2 sw=2

@@ -1,17 +1,18 @@
 { pkgs, lib }:
+with lib;
 {
-  NIX_CONFIG = ''
+  NIX_CONFIG = mkDefault ''
     tarball-ttl = 0
   ''; 
 
-  NETWORK_MANAGER_CONFIG  = ''
+  NETWORK_MANAGER_CONFIG  = mkDefault ''
     [main]
     dns=none
     no-auto-default=*
     systemd-resolved=false
   '';
 
-  RESOLVED_CONFIG = ''
+  RESOLVED_CONFIG = mkDefault ''
     [Resolve]
     DNS=8.8.8.8
     #Domains=
@@ -24,7 +25,7 @@
     DNSStubListener=no
   '';
 
-  SYSTEMD_CONFIG = ''
+  SYSTEMD_CONFIG = mkDefault ''
     [Manager]
     LogLevel=err
     RuntimeWatchdogSec=off
@@ -35,13 +36,13 @@
     DefaultDeviceTimeoutSec=10s
   '';
 
-  SYSTEMD_USER_CONFIG = ''
+  SYSTEMD_USER_CONFIG = mkDefault ''
     [Manager]
     DefaultTimeoutStartSec=10s
     DefaultTimeoutStopSec=10s
   '';
 
-  INPUTRC_CONFIG = lib.mkForce(
+  INPUTRC_CONFIG = mkForce
     builtins.readFile <nixpkgs/nixos/modules/programs/bash/inputrc>
     + 
     ''
@@ -51,9 +52,9 @@
       set visible-stats on
       set colored-stats on
       set mark-symlinked-directories on
-    '');
+    '';
 
-  BASHRC_CONFIG = lib.mkForce(''
+  BASHRC_CONFIG = mkDefault ''
       shopt -s histappend
       shopt -s globstar
       export HISTCONTROL=ignoreboth
@@ -82,9 +83,9 @@
       alias ll='ls -alhFb --group-directories-first'
       alias grep='grep --color=auto'
       alias diff='diff --color=auto'
-    '');
+    '';
 
-  VIMRC_CONFIG = lib.mkForce(''
+  VIMRC_CONFIG = mkDefault ''
     syntax enable
     filetype indent on
     set mouse=a
@@ -102,15 +103,15 @@
     set nowrap
     set modeline
     set modelines=1
-  '');
+  '';
 
-  SSH_CLIENT_CONFIG = ''
+  SSH_CLIENT_CONFIG = mkDefault ''
     Host *
       IdentitiesOnly yes
       ServerAliveInterval 60
   '';
 
-  TMUX_CONFIG = ''
+  TMUX_CONFIG = mkDefault ''
     bind -r C-a send-prefix
     bind r source-file /etc/tmux.conf
     bind -  split-window -v  -c '#{pane_current_path}'
@@ -145,4 +146,3 @@
 }
 
 # vim:expandtab ts=2 sw=2
-
