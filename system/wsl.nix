@@ -7,7 +7,7 @@
     enable = true;
     defaultUser = "rick";
     wslConf = {
-      generateResolvConf = false;
+      network.generateResolvConf = false;
     };
   };
 
