@@ -1,15 +1,16 @@
 { pkgs }:
+with pkgs;
 {
-  CONSOLE = with pkgs; [
+  CONSOLE = [
     terminus_font
   ];
 
-  FONT = with pkgs; [
+  FONT = [
     ubuntu_font_family
     vazir-fonts
   ];
 
-  USER = with pkgs; [
+  USER = [
     chromium
     firefox
     spotify
@@ -47,12 +48,12 @@
     gnome.file-roller
     gnome.gnome-calculator
   ];
-  GNOME_EXT = with pkgs; [
+  GNOME_EXT = [
     gnomeExtensions.appindicator
     gnomeExtensions.just-perfection
   ];
 
-  SYSTEM = with pkgs; [
+  SYSTEM = [
     nixos-generators
     vim_configurable
     efibootmgr

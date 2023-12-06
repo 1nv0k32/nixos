@@ -1,5 +1,6 @@
-{ customPkgs, ... }: { pkgs, ... }:
+{ customPkgs, ... }: { pkgs, lib, ... }:
 let homeManager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz"; in
+with lib;
 {
   users.groups."ubridge" = {
     name = "ubridge";
@@ -26,8 +27,8 @@ let homeManager = builtins.fetchTarball "https://github.com/nix-community/home-m
 
   services.xserver = {
     displayManager = {
-      autoLogin.enable = false;
-      autoLogin.user = "guest";
+      autoLogin.enable = mkDefault false;
+      autoLogin.user = mkDefault "guest";
     };
   };
 
