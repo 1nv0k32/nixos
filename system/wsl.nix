@@ -21,6 +21,8 @@
     description = "wsl-vpnkit service";
     serviceConfig = {
       ExecStart = "${pkgs.wsl-vpnkit}/bin/wsl-vpnkit";
+      User = "root";
+      Group = "root";
     };
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
