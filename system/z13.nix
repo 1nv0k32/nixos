@@ -21,7 +21,7 @@
           turbo = "auto";
         };
         "battery" = {
-          governor = "schedutil";
+          governor = "ondemand";
           scaling_min_freq = 400000;
           scaling_max_freq = 1600000;
           turbo = "never";
