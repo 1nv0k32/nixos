@@ -17,7 +17,7 @@
 
   systemd.services."wsl-vpnkit" = {
     enable = true;
-    description = "wsl-vpnkit service"
+    description = "wsl-vpnkit service";
     serviceConfig = {
       ExecStart = "${pkgs.wsl-vpnkit}/bin/wsl-vpnkit";
     };
