@@ -5,6 +5,7 @@ let customPkgs = pkgs.callPackage (import ./pkgs.nix) {}; in
   imports = [ (import ./users.nix { customPkgs = customPkgs; }) ];
 
   nix = {
+    settings.experimental-features = [ "nix-command" ];
     extraOptions = customConfs.NIX_CONFIG;
   };
 
