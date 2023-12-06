@@ -99,7 +99,7 @@ let customPkgs = pkgs.callPackage (import ./pkgs.nix) {}; in
       hibernateKey = "lock";
       lidSwitchExternalPower = "lock";
       lidSwitchDocked = "lock";
-      lidSwitch = "lock";
+      lidSwitch = "suspend";
     };
     xserver = {
       enable = true;
