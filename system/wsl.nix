@@ -35,18 +35,18 @@ with lib;
 
   services.resolved = {
     enable = mkForce true;
-    extraConfig = mkForce ''
-    [Resolve]
-    DNS=8.8.8.8
-    #Domains=
-    DNSSEC=no
-    #DNSOverTLS=no
-    MulticastDNS=no
-    LLMNR=no
-    Cache=no
-    CacheFromLocalhost=no
-    DNSStubListener=no
-  '';
+  #   extraConfig = mkForce ''
+  #   [Resolve]
+  #   DNS=8.8.8.8
+  #   #Domains=
+  #   DNSSEC=no
+  #   #DNSOverTLS=no
+  #   MulticastDNS=no
+  #   LLMNR=no
+  #   Cache=no
+  #   CacheFromLocalhost=no
+  #   DNSStubListener=no
+  # '';
   };
 
   boot.loader.systemd-boot.enable = false;
