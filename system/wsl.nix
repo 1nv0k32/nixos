@@ -18,16 +18,19 @@ with lib;
     wsl-vpnkit
   ];
 
-  systemd.services."wsl-vpnkit" = {
-    enable = true;
-    description = "wsl-vpnkit service";
-    serviceConfig = {
-      ExecStart = "${pkgs.wsl-vpnkit}/bin/wsl-vpnkit";
-      Restart = "always";
-      KillMode = "mixed";
+  systemd.services = {
+    systemd-resolved.enable = mkForce true;
+    "wsl-vpnkit" = {
+      enable = true;
+      description = "wsl-vpnkit service";
+      serviceConfig = {
+        ExecStart = "${pkgs.wsl-vpnkit}/bin/wsl-vpnkit";
+        Restart = "always";
+        KillMode = "mixed";
+      };
+      after = [ "network.target" ];
+      wantedBy = [ "multi-user.target" ];
     };
-    after = [ "network.target" ];
-    wantedBy = [ "multi-user.target" ];
   };
 
   services.resolved = {
