@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }:
+with lib;
+{
   imports = [
     <nixos-wsl/modules>
   ];
@@ -29,8 +31,8 @@
   };
 
   services.resolved = {
-    enable = true;
-    extraConfig = ''
+    enable = mkForce true;
+    extraConfig = mkForce ''
     [Resolve]
     DNS=8.8.8.8
     #Domains=
