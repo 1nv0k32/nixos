@@ -48,6 +48,7 @@ with pkgs;
     gnome.file-roller
     gnome.gnome-calculator
   ];
+
   GNOME_EXT = [
     gnomeExtensions.appindicator
     gnomeExtensions.just-perfection
