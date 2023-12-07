@@ -20,7 +20,9 @@
     enable = true;
     description = "wsl-vpnkit service";
     serviceConfig = {
-      ExecStart = "${pkgs.wsl-vpnkit}/bin/wsl-vpnkit";
+      ExecStart = "${pkgs.bash} -l -c ${pkgs.wsl-vpnkit}/bin/wsl-vpnkit";
+      Restart = "always";
+      KillMode = "mixed";
       User = "root";
       Group = "root";
     };
