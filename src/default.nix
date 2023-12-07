@@ -79,7 +79,10 @@ with lib;
 
   services = {
     avahi.enable = mkForce false;
-    gnome.core-utilities.enable = mkForce false ;
+    gnome = {
+      core-utilities.enable = mkForce false;
+      gnome-keyring.enable = mkDefault true;
+    };
     fstrim.enable = mkDefault true;
     fwupd.enable = mkDefault true;
     flatpak.enable = mkDefault true;
