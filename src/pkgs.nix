@@ -39,6 +39,7 @@ with pkgs;
     alsa-utils
     qflipper
     bitwarden
+    ghidra-bin
 
     gnome.gnome-terminal
     gnome.gedit
