@@ -78,6 +78,7 @@ with pkgs;
     cmake
     libgcc
     glibc
+    gcc
     gdb
     valgrind
     android-tools
