@@ -70,10 +70,18 @@ with pkgs;
     aria
     wget
     unzip
-    gnumake
     tpm2-tss
     jq
     yq
+
+    gnumake
+    cmake
+    libgcc
+    glibc
+    gdb
+    valgrind
+    android-tools
+
 
     wireguard-tools
     conntrack-tools
