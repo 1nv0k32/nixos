@@ -84,7 +84,6 @@ with pkgs;
     valgrind
     android-tools
 
-
     wireguard-tools
     conntrack-tools
     nftables
