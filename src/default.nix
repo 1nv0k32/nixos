@@ -142,7 +142,6 @@ with lib;
       services = {
         gdm.enableGnomeKeyring = mkDefault true;
         gdm.fprintAuth = mkDefault false;
-        login.rules.auth.fprintAuth.settings = mkDefault ["max-tries=20"];
       };
     };
     wrappers.ubridge = {
