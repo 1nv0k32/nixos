@@ -92,7 +92,7 @@ with pkgs;
     ubridge
     iw
 
-    nixops
+    nixopsUnstable
     kubectl
     kubernetes-helm
     k9s
