@@ -92,6 +92,7 @@ with pkgs;
     ubridge
     iw
 
+    nixops
     kubectl
     kubernetes-helm
     k9s
