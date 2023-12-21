@@ -142,8 +142,7 @@ with lib;
       services = {
         gdm.enableGnomeKeyring = mkDefault true;
         gdm.fprintAuth = mkDefault true;
-        gdm.rules.auth.fprintd.order = config.security.pam.services.gdm.rules.auth.unix.order + 10;
-        login.rules.auth.fprintd.order = config.security.pam.services.login.rules.auth.unix.order + 10;
+        # login.rules.auth.fprintd.order = config.security.pam.services.login.rules.auth.unix.order + 10;
       };
     };
     wrappers.ubridge = {
