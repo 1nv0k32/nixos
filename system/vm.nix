@@ -4,21 +4,21 @@
       memorySize = 8192;
       cores = 6;
     };
-  };
-  users.users."rick".initialPassword = "rick";
-  boot.kernelParams = options.boot.kernelParams.default ++ [ "console=tty0" ];
+    users.users."rick".initialPassword = "rick";
+    boot.kernelParams = options.boot.kernelParams.default ++ [ "console=tty0" ];
 
-  networking = {
-    hostName = "vmnix";
-    firewall = {
-      allowPing = true;
-      allowedTCPPorts = options.networking.firefox.allowedTCPPorts.default ++ [ 22 ];
+    networking = {
+      hostName = "vmnix";
+      firewall = {
+        allowPing = true;
+        allowedTCPPorts = options.networking.firewall.allowedTCPPorts.default ++ [ 22 ];
+      };
     };
-  };
-  services = {
-    k3s.enable = true;
-    qemuGuest.enable = true;
-    openssh.enable = true;
+    services = {
+      k3s.enable = true;
+      qemuGuest.enable = true;
+      openssh.enable = true;
+    };
   };
 }
 
