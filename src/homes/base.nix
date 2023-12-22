@@ -61,11 +61,11 @@ with lib.hm.gvariant;
     "org/gnome/desktop/session" = {
       idle-delay = mkUint32 0;
     };
-    "org/gnome/desktop/background" = {
-      picture-options = "none";
-      primary-color = "#000000";
-      secondary-color = "#000000";
-    };
+    # "org/gnome/desktop/background" = {
+    #   picture-options = "none";
+    #   primary-color = "#000000";
+    #   secondary-color = "#000000";
+    # };
     "org/gnome/desktop/notifications" = {
       show-in-lock-screen = false;
     };
