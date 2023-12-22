@@ -1,4 +1,4 @@
-{ config, customPkgs, ... }: { pkgs, lib, ... }:
+{ customPkgs, ... }: { config, pkgs, lib, ... }:
 let customDots = pkgs.callPackage (import ./dots.nix) {}; in
 with lib.hm.gvariant;
 {
