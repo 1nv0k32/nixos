@@ -154,6 +154,11 @@ with lib.hm.gvariant;
       startup-status = mkInt32 0;
       osd-position = mkInt32 2;
     };
+
+    "org/gnome/shell/extensions/just-perfection" = {
+      power = false;
+      time = mkInt32 0;
+    };
   };
 }
 
