@@ -1,5 +1,9 @@
-{ options, ... }: {
+{ modulesPath, options, ... }: {
   virtualisation.vmVariant = {
+    imports = [
+      (modulesPath + "/virtualisation/qemu-vm.nix")
+    ];
+
     virtualisation = {
       memorySize = 8192;
       cores = 6;
