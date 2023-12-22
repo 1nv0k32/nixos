@@ -108,10 +108,11 @@ with lib;
     xserver = {
       enable = mkDefault true;
       layout = mkDefault "us";
-      desktopManager.gnome.enable = mkDefault true;
       displayManager = {
+        gnome.enable = mkDefault true;
         gdm.enable = mkDefault true;
         defaultSession = mkDefault "gnome";
+        wallpaper.mode = "center";
       };
     };
     pipewire = {

@@ -1,40 +1,18 @@
 { customPkgs, ... }: { pkgs, lib, ... }:
+let customDots = pkgs.callPackage (import ./dots.nix) {}; in
 with lib.hm.gvariant;
 {
   programs.home-manager.enable = true;
 
+  home = {
+    stateVersion = "24.05";
+    homeDirectory = "/home/${home.username}";
+    file."${home.homeDirectory}/.background-image" = source ./backgroud-image;
+  };
+
   programs.bash = {
     enable = true;
-    bashrcExtra = ''
-    confCommit() (
-      [ -z $1 ] && exit 1
-      cd -- $1 || exit 1
-      while true; do
-        read -p "Do you wish to commit configuration.nix changes? [yN] " yn_conf
-        case $yn_conf in
-            [Yy]* )
-              git update-index --no-skip-worktree configuration.nix
-              ;;
-        esac
-        git diff
-        read -p "Do you wish to commit these changes? [yN] " yn
-        case $yn in
-            [Yy]* )
-              git add .
-              git commit -m "Conf changed"
-              git push
-              break
-              ;;
-            * )
-              break
-              ;;
-        esac
-      done
-      git update-index --skip-worktree configuration.nix
-    )
-    
-    alias cat='bat'
-      '';
+    bashrcExtra = customDots.DOT_BASHRC;
   };
 
   programs.ssh = {

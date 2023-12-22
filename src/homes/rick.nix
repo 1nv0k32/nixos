@@ -3,8 +3,6 @@
   home-manager.users."rick" = { ... }: {
     home = {
       username = "rick";
-      homeDirectory = "/home/rick";
-      stateVersion = "24.05";
     };
 
     programs.git = {
