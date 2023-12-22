@@ -1,4 +1,4 @@
-{ customPkgs, ... }: { pkgs, lib, ... }:
+{ config, customPkgs, ... }: { pkgs, lib, ... }:
 let customDots = pkgs.callPackage (import ./dots.nix) {}; in
 with lib.hm.gvariant;
 {
@@ -6,8 +6,8 @@ with lib.hm.gvariant;
 
   home = {
     stateVersion = "24.05";
-    homeDirectory = "/home/${home.username}";
-    file."${home.homeDirectory}/.background-image" = source ./backgroud-image;
+    homeDirectory = "/home/${config.home.username}";
+    file."${config.home.homeDirectory}/.background-image" = source ./backgroud-image;
   };
 
   programs.bash = {
