@@ -81,7 +81,7 @@ with lib.hm.gvariant;
       enable-hot-corners = false;
     };
     "org/gnome/desktop/session" = {
-      idle-delay = mkUint32 180;
+      idle-delay = mkUint32 0;
     };
     "org/gnome/desktop/background" = {
       picture-options = "none";
