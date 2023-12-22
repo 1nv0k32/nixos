@@ -66,6 +66,7 @@ with pkgs;
     tree
     file
     htop
+    nload
     bat
     ncdu
     aria
