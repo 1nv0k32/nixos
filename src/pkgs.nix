@@ -127,6 +127,7 @@ with pkgs;
 
     python311
     poetry
+    wineWowPackages.stable
   ];
 }
 

@@ -7,8 +7,8 @@ with lib.hm.gvariant;
   home = {
     stateVersion = "24.05";
     homeDirectory = "/home/${config.home.username}";
-    file."${config.home.homeDirectory}/.background-image" = { source = ./backgroud-image; };
-    file."${config.home.homeDirectory}/.face" = { source = ./backgroud-image; };
+    file."${config.home.homeDirectory}/.background-image" = { source = ./../backgroud-image; };
+    file."${config.home.homeDirectory}/.face" = { source = ./../backgroud-image; };
   };
 
   programs.bash = {
