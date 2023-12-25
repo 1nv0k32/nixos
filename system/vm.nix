@@ -10,7 +10,7 @@
     };
 
     users.users."rick".initialPassword = "rick";
-    boot.kernelParams = options.boot.kernelParams.default ++ [ "console=tty0" ];
+    boot.kernelParams = options.boot.kernelParams.default ++ [ "console=ttyS0,115200" ];
 
     networking = {
       hostName = "vmnix";
