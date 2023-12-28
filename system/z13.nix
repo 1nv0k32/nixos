@@ -3,12 +3,7 @@ with lib;
 {
   boot = {
     kernelParams = options.boot.kernelParams.default ++ [ "amd_pstate=passive" ];
-    initrd.systemd.contents."/etc/crypttab" = {
-      enable = true;
-      text = mkForce ''
-        root UUID=98d2d55d-2272-4116-9267-2ca7746c616a none tpm2-device=auto
-      '';
-    };
+    initrd.luks.devices."root".crypttabExtraOpts = [ "tpm2-device=auto" ];
   };
 
   services = {
