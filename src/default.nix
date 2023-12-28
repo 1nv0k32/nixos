@@ -10,6 +10,8 @@ with lib;
     extraOptions = customConfs.NIX_CONFIG;
   };
 
+  documentation.nixos.enable = mkDefault false;
+
   system = {
     stateVersion = mkDefault "24.05";
     autoUpgrade = {
