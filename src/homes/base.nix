@@ -78,6 +78,7 @@ with lib.hm.gvariant;
       disable-while-typing = true;
       tap-to-click = true;
       two-finger-scrolling-enabled = true;
+      middle-click-emulation = true;
     };
     "org/gnome/settings-daemon/plugins/power" = {
       idle-dim = false;
