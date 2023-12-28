@@ -17,7 +17,7 @@ with lib;
         case $yn in
             [Yy]* )
               git add .
-              git commit -m "Conf changed"
+              git commit -m "$(date +%Y/%m/%d-%H:%M:%S)"
               git push
               break
               ;;
