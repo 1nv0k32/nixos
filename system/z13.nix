@@ -43,10 +43,6 @@ with lib;
 
   systemd.services = {
     minidlna.wantedBy = mkForce [];
-    fprintd = {
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig.Type = "simple";
-    };
   };
 }
 
