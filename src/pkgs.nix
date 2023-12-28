@@ -128,6 +128,10 @@ with pkgs;
     python311
     poetry
     wineWowPackages.stable
+
+    stm32cubemx
+    stm32loader
+    stm32flash
   ];
 }
 
