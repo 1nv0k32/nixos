@@ -1,12 +1,11 @@
 { config, options, lib, ... }:
+let var = builtins.trace config.boot.initrd.luks.devices; in
 with lib;
 {
   boot = {
     kernelParams = options.boot.kernelParams.default ++ [ "amd_pstate=passive" ];
     initrd.luks.devices."root".crypttabExtraOpts = [ "tpm2-device=auto" ];
   };
-
-  builtins.trace config.boot.initrd.luks.devices
 
   services = {
     fprintd.enable = true;
