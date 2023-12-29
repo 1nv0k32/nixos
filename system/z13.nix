@@ -3,7 +3,7 @@ let luksDevs = config.boot.initrd.luks.devices; in
 with lib;
 {
   boot.kernelParams = options.boot.kernelParams.default ++ [ "amd_pstate=passive" ];
-  boot.initrd.luks.devices = mkIf (boot.initrd.luks.devices ? "root") { "root".crypttabExtraOpts = [ "tpm2-device=auto" ]; };
+  boot.initrd.luks.devices = mkIf (config.boot.initrd.luks.devices ? "root") { "root".crypttabExtraOpts = [ "tpm2-device=auto" ]; };
 
   services = {
     fprintd.enable = true;
