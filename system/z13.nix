@@ -2,10 +2,7 @@
 with lib;
 {
   boot.kernelParams = options.boot.kernelParams.default ++ [ "amd_pstate=passive" ];
-  boot.initrd.luks.devices."root" = {
-    device = mkForce config.boot.initrd.luks.devices."root".device;
-    crypttabExtraOpts = [ "tpm2-device=auto" ];
-  };
+  boot.initrd.luks.devices."root".crypttabExtraOpts = [ "tpm2-device=auto" ];
 
   services = {
     fprintd.enable = true;
