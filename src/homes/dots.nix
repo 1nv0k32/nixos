@@ -12,16 +12,16 @@ with lib;
               git update-index --no-skip-worktree configuration.nix
               ;;
         esac
-        git diff
-        read -p "Do you wish to commit these changes? [yN] " yn
+        git --no-pager diff
+        read -p "Do you wish to commit these changes? [Yn] " yn
         case $yn in
-            [Yy]* )
-              git add .
-              git commit -m "$(date +%Y/%m/%d-%H:%M:%S)"
-              git push
+            [Nn]* )
               break
               ;;
             * )
+              git add .
+              git commit -m "$(date +%Y/%m/%d-%H:%M:%S)"
+              git push
               break
               ;;
         esac

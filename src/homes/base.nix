@@ -142,7 +142,7 @@ with lib.hm.gvariant;
       osd-position = mkInt32 2;
     };
 
-    "org/gnome/shell/extensions/just-perfection" = {
+    "org/gnome/shell/extensions/unblank" = {
       power = false;
       time = mkInt32 0;
     };
