@@ -1,10 +1,12 @@
 { config, options, lib, ... }:
-let var = builtins.trace config.boot.initrd.luks.devices; in
 with lib;
 {
   boot = {
     kernelParams = options.boot.kernelParams.default ++ [ "amd_pstate=passive" ];
-    initrd.luks.devices."root".crypttabExtraOpts = [ "tpm2-device=auto" ];
+    initrd.luks.devices = let luksDevs = config.boot.initrd.luks.devices; in
+      builtins.listToAttrs (
+        map (device: lib.nameValuePair device {crypttabExtraOpts = [ "tpm2-device=auto" ];})
+      luksDevs);
   };
 
   services = {
