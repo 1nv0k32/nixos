@@ -1,8 +1,9 @@
 { config, options, lib, ... }:
+let luksDevs = config.boot.initrd.luks.devices; in
 with lib;
 {
   boot.kernelParams = options.boot.kernelParams.default ++ [ "amd_pstate=passive" ];
-  boot.initrd.luks.devices = let luksDevs = config.boot.initrd.luks.devices; in luksDevs;
+  boot.initrd.luks.devices = luksDevs;
 
   services = {
     fprintd.enable = true;
