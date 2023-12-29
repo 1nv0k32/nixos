@@ -106,6 +106,10 @@ with lib.hm.gvariant;
     };
     "org/gnome/settings-daemon/plugins/media-keys" = {
       home = ["<Super>e"];
+      next = ["<Control><Super>Right"];
+      play = ["<Control><Super>Down"];
+      previous = ["<Control><Super>Left"];
+      stop = ["<Control><Super>Up"];
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
