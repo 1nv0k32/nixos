@@ -3,7 +3,7 @@ with lib;
 {
   boot = {
     kernelParams = options.boot.kernelParams.default ++ [ "amd_pstate=passive" ];
-    mkIf boot.initrd.luks.devices
+    mkIf config.boot.initrd.luks.devices
       initrd.luks.devices."root".crypttabExtraOpts = [ "tpm2-device=auto" ];
   };
 
