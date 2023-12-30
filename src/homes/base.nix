@@ -103,6 +103,7 @@ with lib.hm.gvariant;
       switch-windows = ["<Alt>Tab"];
       switch-applications = ["<Super>Tab"];
       activate-window-menu = [];
+      show-desktop = ["<Super>d"];
     };
     "org/gnome/settings-daemon/plugins/media-keys" = {
       home = ["<Super>e"];
