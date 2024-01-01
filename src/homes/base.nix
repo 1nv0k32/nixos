@@ -67,8 +67,6 @@ with lib.hm.gvariant;
       color-shading-type = "solid";
       primary-color = "#000000";
       secondary-color = "#000000";
-      picture-uri = "file:///${config.home.homeDirectory}/.background-image";
-      picture-uri-dark = "file:///${config.home.homeDirectory}/.background-image";
     };
     "org/gnome/desktop/notifications" = {
       show-in-lock-screen = false;
