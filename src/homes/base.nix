@@ -63,7 +63,7 @@ with lib.hm.gvariant;
       idle-delay = mkUint32 0;
     };
     "org/gnome/desktop/background" = {
-      picture-options = "centered";
+      picture-options = "none";
       color-shading-type = "solid";
       primary-color = "#000000";
       secondary-color = "#000000";
