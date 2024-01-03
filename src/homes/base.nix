@@ -34,6 +34,7 @@ with lib.hm.gvariant;
       cursorShape = "ibeam";
       cursorBlinkMode = "on";
       font = "Monospace 13";
+      customCommand = "tmux new-session -As ${config.networking.hostName}";
 
     };
   };

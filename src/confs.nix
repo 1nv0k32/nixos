@@ -124,9 +124,10 @@ with lib;
     bind -r j select-pane -D
     bind -r h select-pane -L
     bind -r l select-pane -R
-    bind -T copy-mode MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel
 
     set -sg escape-time 0
+    set -g set-clipboard on
+    set -g terminal-features ',xterm-256color:clipboard'
     set -g prefix C-a
     set -g history-limit 50000
     set -g set-titles on
