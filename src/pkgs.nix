@@ -42,7 +42,6 @@ with pkgs;
     ghidra-bin
 
     gnome.gnome-terminal
-    gnome.gedit
     gnome.dconf-editor
     gnome.gnome-tweaks
     gnome.nautilus
