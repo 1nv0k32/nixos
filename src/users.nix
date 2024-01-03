@@ -1,4 +1,4 @@
-{ customPkgs, ... }: { pkgs, lib, ... }:
+{ customPkgs, ... }: { config, pkgs, lib, ... }:
 let homeManager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz"; in
 with lib;
 {
@@ -34,8 +34,8 @@ with lib;
 
   imports = [
     (import "${homeManager}/nixos")
-    (import ./homes/rick.nix { customPkgs = customPkgs; })
-    (import ./homes/guest.nix { customPkgs = customPkgs; })
+    (import ./homes/rick.nix { customPkgs = customPkgs; systemConfig = config; })
+    (import ./homes/guest.nix { customPkgs = customPkgs; systemConfig = config; })
   ];
 }
 

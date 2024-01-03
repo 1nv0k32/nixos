@@ -1,4 +1,4 @@
-{ customPkgs, ... }: { ... }:
+{ customPkgs, systemConfig, ... }: { ... }:
 {
   home-manager.users."rick" = { ... }: {
     home = {
@@ -11,7 +11,7 @@
       userEmail = "Armin.Mahdilou@gmail.com";
     };
 
-    imports = [ (import ./base.nix { customPkgs = customPkgs; }) ];
+    imports = [ (import ./base.nix { customPkgs = customPkgs; systemConfig = systemConfig; }) ];
   };
 }
 

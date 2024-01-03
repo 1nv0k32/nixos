@@ -1,4 +1,4 @@
-{ customPkgs, ... }: { config, pkgs, lib, ... }:
+{ customPkgs, systemConfig, ... }: { pkgs, lib, ... }:
 let customDots = pkgs.callPackage (import ./dots.nix) {}; in
 with lib.hm.gvariant;
 {
@@ -34,7 +34,7 @@ with lib.hm.gvariant;
       cursorShape = "ibeam";
       cursorBlinkMode = "on";
       font = "Monospace 13";
-      customCommand = "tmux new-session -As ${config.networking.hostName}";
+      customCommand = "tmux new-session -As ${systemConfig.networking.hostName}";
 
     };
   };
