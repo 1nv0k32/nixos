@@ -184,6 +184,7 @@ with lib;
     variables = {
       EDITOR = mkForce "vim";
       VAGRANT_DEFAULT_PROVIDER = mkForce "libvirt";
+      LIBVIRT_DEFAULT_URI = mkForce "qemu:///system";
     };
 
     etc = {
