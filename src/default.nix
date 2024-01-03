@@ -26,6 +26,7 @@ with lib;
     kernelPackages = mkDefault pkgs.linuxPackages_latest;
     blacklistedKernelModules = mkDefault [ "snd_pcsp" ];
     extraModprobeConfig = mkDefault "options kvm_amd nested=1";
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
     loader = {
       efi.canTouchEfiVariables = mkDefault true;
       timeout = mkDefault 0;
