@@ -40,6 +40,7 @@ with pkgs;
     qflipper
     bitwarden
     ghidra-bin
+    rpi-imager
 
     gnome.gnome-terminal
     gnome.dconf-editor
