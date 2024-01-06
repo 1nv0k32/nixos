@@ -41,7 +41,7 @@ with pkgs;
     bitwarden
     ghidra-bin
     rpi-imager
-    yt-dl
+    yt-dlp
     media-downloader
 
     gnome.gnome-terminal
