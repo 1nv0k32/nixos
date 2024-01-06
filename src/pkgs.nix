@@ -41,6 +41,8 @@ with pkgs;
     bitwarden
     ghidra-bin
     rpi-imager
+    yt-dl
+    media-downloader
 
     gnome.gnome-terminal
     gnome.dconf-editor
