@@ -66,7 +66,7 @@ with lib;
       "L+ /lib64/ld-linux-x86-64.so.2 - - - - ${pkgs.glibc}/lib64/ld-linux-x86-64.so.2"
     ];
     services = {
-      minidlna.wantedBy = mkDefault [];
+      k3s.wantedBy = mkDefault [];
     };
   };
 
