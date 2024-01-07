@@ -65,6 +65,9 @@ with lib;
       "L+ /lib/ld-linux.so.2 - - - - ${pkgs.glibc_multi}/lib/32/ld-linux.so.2"
       "L+ /lib64/ld-linux-x86-64.so.2 - - - - ${pkgs.glibc}/lib64/ld-linux-x86-64.so.2"
     ];
+    services = {
+      minidlna.wantedBy = mkDefault [];
+    };
   };
 
   time = {
@@ -131,7 +134,7 @@ with lib;
       client.enable = mkDefault false;
     };
     k3s = {
-      enable = mkDefault false;
+      enable = mkDefault true;
     };
   };
 
