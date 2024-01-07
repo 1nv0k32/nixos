@@ -7,14 +7,14 @@ with lib;
 
   NETWORK_MANAGER_CONFIG  = mkDefault ''
     [main]
-    dns=none
+    dns=systemd-resolved
     no-auto-default=*
-    systemd-resolved=false
+    systemd-resolved=true
   '';
 
   RESOLVED_CONFIG = mkDefault ''
     [Resolve]
-    DNS=8.8.8.8
+    #DNS=
     #Domains=
     DNSSEC=no
     #DNSOverTLS=no
