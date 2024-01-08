@@ -65,9 +65,6 @@ with lib;
       "L+ /lib/ld-linux.so.2 - - - - ${pkgs.glibc_multi}/lib/32/ld-linux.so.2"
       "L+ /lib64/ld-linux-x86-64.so.2 - - - - ${pkgs.glibc}/lib64/ld-linux-x86-64.so.2"
     ];
-    services = {
-      k3s.wantedBy = mkDefault [];
-    };
   };
 
   time = {
@@ -132,9 +129,6 @@ with lib;
     tor = {
       enable = mkDefault false;
       client.enable = mkDefault false;
-    };
-    k3s = {
-      enable = mkDefault true;
     };
   };
 
